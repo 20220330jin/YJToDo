@@ -17,4 +17,5 @@ public class MainDashBoardRestController {
     public void create(@RequestBody MainDashBoardDto.createParam createParam){
         mainDashBoardService.create(createParam);
     };
+
 }
