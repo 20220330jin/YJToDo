@@ -1,6 +1,7 @@
 package com.example.yjtodobe.domain;
 
 import com.example.yjtodobe.model.MainDashBoardDto;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
@@ -11,7 +12,8 @@ import java.util.function.Supplier;
 
 @Entity
 @NoArgsConstructor
-public class MainDashBoard {
+@Getter
+public class MainDashBoard extends BaseEntity {
 
     @Id
     @GeneratedValue

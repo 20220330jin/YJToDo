@@ -2,6 +2,7 @@ package com.example.yjtodobe.model;
 
 import lombok.Getter;
 
+
 public class MainDashBoardDto {
 
     @Getter
