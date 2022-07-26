@@ -2,6 +2,8 @@ package com.example.yjtodobe.model;
 
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 
 public class MainDashBoardDto {
 
@@ -14,6 +16,20 @@ public class MainDashBoardDto {
         private long id;
 
         private String content;
+    }
+
+    @Getter
+    public static class list {
+        private String content;
+
+        private LocalDateTime createDateTime;
+
+        public list(String content,
+                    LocalDateTime createDateTime
+                    ){
+            this.content = content;
+            this.createDateTime = createDateTime;
+        }
     }
 
 
