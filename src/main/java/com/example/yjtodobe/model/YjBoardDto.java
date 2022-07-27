@@ -14,7 +14,7 @@ public class YjBoardDto {
 
         private String title;
     }
-
+    @Getter 
     public static class read {
         private long id;
 
