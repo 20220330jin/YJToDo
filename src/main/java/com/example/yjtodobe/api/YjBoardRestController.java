@@ -1,5 +1,7 @@
 package com.example.yjtodobe.api;
 
+import java.util.List;
+
 // import org.springframework.web.bind.annotation.PostMapping;
 // import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RestController;
@@ -19,10 +21,18 @@ public class YjBoardRestController {
 
     final YjBoardService yjBoardService;
     
+
+    // write 페이지 insert 기능 
     @PostMapping("/write")
     public void create(@RequestBody YjBoardDto.createParam createParam){
         yjBoardService.create(createParam);
         
+    };
+    
+    // read
+    @GetMapping("/read")
+    public List<YjBoardDto.read> read() {
+        return yjBoardService.read();
     };
 
 }

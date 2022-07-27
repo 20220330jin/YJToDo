@@ -14,4 +14,15 @@ public class YjBoardDto {
 
         private String title;
     }
+
+    public static class read {
+        private long id;
+
+        private String title;
+
+        public read(long id, String title){
+            this.id = id;
+            this.title = title;
+        }
+    }
 }
