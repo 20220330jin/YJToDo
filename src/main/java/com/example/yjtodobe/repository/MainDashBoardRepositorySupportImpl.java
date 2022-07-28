@@ -33,6 +33,7 @@ public class MainDashBoardRepositorySupportImpl extends QuerydslRepositorySuppor
         final BooleanExpression isDelYn = mainDashBoard.delYn.eq('N');
 
         return jpaQueryFactory.select(Projections.constructor(MainDashBoardDto.list.class,
+                mainDashBoard.id,
                 mainDashBoard.content,
                 mainDashBoard.createDateTime
                 )).from(mainDashBoard)

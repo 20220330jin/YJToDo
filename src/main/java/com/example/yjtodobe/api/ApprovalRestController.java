@@ -22,8 +22,18 @@ public class ApprovalRestController {
         approvalService.approvalRequest(param);
     }
 
+    /**
+     * 결재 전체 리스트 조회
+     * @return
+     */
     @GetMapping("/approvalList")
     List<ApprovalDto.approvalList> approvalList(){
         return approvalService.approvalList();
     }
+
+    /**
+     * 결재 상세조회
+     */
+    // {params:{key: key}}
+    //Model Attribute
 }

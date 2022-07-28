@@ -20,13 +20,17 @@ public class MainDashBoardDto {
 
     @Getter
     public static class list {
+        private Long id;
+
         private String content;
 
         private LocalDateTime createDateTime;
 
-        public list(String content,
+        public list(Long id,
+                    String content,
                     LocalDateTime createDateTime
                     ){
+            this.id = id;
             this.content = content;
             this.createDateTime = createDateTime;
         }

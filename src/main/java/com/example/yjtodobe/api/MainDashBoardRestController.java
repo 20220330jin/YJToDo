@@ -26,5 +26,15 @@ public class MainDashBoardRestController {
         return mainDashBoardService.list();
     }
 
+    /**
+     * 대시보드 수정
+     */
+    // Request body
+
+    /**
+     * 대시보드 삭제
+     */
+    // Request body
+
 
 }
