@@ -39,6 +39,7 @@ public class MainDashBoardRepositorySupportImpl extends QuerydslRepositorySuppor
                 .where(isDelYn
                         .and(isDelYn)
                 )
+                .orderBy(mainDashBoard.createDateTime.desc())
                 .fetch();
     }
 }
