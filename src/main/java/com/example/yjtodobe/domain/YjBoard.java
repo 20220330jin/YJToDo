@@ -24,8 +24,14 @@ public class YjBoard extends BaseEntity{
 
     public String title;
 
+    public String content;
+
+    public String author;
+
     public YjBoard(YjBoardDto.createParam createParam){
         this.title = createParam.getTitle();
+        this.content = createParam.getContent();
+        this.author = createParam.getAuthor();
     }
 
 

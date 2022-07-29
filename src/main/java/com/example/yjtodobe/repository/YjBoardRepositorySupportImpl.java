@@ -34,7 +34,10 @@ public class YjBoardRepositorySupportImpl extends QuerydslRepositorySupport impl
         final BooleanExpression isDelYn = yjBoard.delYn.eq('N');
         return jpaQueryFactory.select(Projections.constructor(YjBoardDto.read.class, 
             yjBoard.id,
-            yjBoard.title
+            yjBoard.title,
+            yjBoard.content,
+            yjBoard.author,
+            yjBoard.createDateTime
         )) 
         .from(yjBoard)
         .where(isUseYn
