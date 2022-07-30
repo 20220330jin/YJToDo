@@ -8,4 +8,6 @@ public interface YjBoardService {
     void create(YjBoardDto.createParam createParam);
     
     List<YjBoardDto.read> read();
+
+    YjBoardDto.detailRead detailRead(YjBoardDto.detailReadParam param);
 }

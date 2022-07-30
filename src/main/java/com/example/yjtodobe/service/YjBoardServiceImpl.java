@@ -38,4 +38,9 @@ public class YjBoardServiceImpl implements YjBoardService{
         return yjBoardRepositorySupport.read();
     }
     
+    @Override
+    public YjBoardDto.detailRead detailRead(YjBoardDto.detailReadParam param) {
+        
+        return yjBoardRepositorySupport.detailRead(param);
+    }
 }

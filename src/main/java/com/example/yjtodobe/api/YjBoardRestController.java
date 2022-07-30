@@ -35,4 +35,9 @@ public class YjBoardRestController {
         return yjBoardService.read();
     };
 
+    // detail 
+    @GetMapping("/detail")
+    public YjBoardDto.detailRead detailRead(@ModelAttribute YjBoardDto.detailReadParam param) {
+        return yjBoardService.detailRead(param);
+    }
 }

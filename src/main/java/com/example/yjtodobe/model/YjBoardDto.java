@@ -43,4 +43,28 @@ public class YjBoardDto {
             this.createDateTime = createDateTime;
         }
     }
+
+    @Getter
+    public static class detailRead {
+        private String title;
+
+        private String content;
+
+        private String author;
+
+        private long id;
+
+        public detailRead(String title, String content, String author, long id) {
+            this.title = title;
+            this.content = content;
+            this.author = author;
+            this.id = id;
+        }
+    }
+
+    @Getter
+    public static class detailReadParam {
+        private long id;
+        
+    }
 }
