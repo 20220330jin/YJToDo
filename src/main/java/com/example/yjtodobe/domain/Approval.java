@@ -20,6 +20,9 @@ public class Approval extends BaseEntity {
     private String content;
 
     @Enumerated(EnumType.STRING)
+    private ApprovalTypeEnum approvalType;
+
+    @Enumerated(EnumType.STRING)
     private ApprovalStatusEnum approvalStatus;
 
     public Approval(String title, String content, ApprovalStatusEnum approvalStatus){
@@ -33,6 +36,7 @@ public class Approval extends BaseEntity {
         this.title = param.getTitle();
         this.content = param.getContent();
         this.approvalStatus = ApprovalStatusEnum.REQUEST;
+        this.approvalType = param.getApprovalType().equals(ApprovalTypeEnum.VACATION.name()) ? ApprovalTypeEnum.VACATION : ApprovalTypeEnum.PAYMENT;
     }
 
     public static Supplier<Approval> approvalRequest(ApprovalDto.approvalRequestParam param){

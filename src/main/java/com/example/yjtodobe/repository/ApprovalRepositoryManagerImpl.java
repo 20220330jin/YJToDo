@@ -1,6 +1,7 @@
 package com.example.yjtodobe.repository;
 
 import com.example.yjtodobe.domain.Approval;
+import com.example.yjtodobe.domain.ApprovalTypeEnum;
 import com.example.yjtodobe.model.ApprovalDto;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
