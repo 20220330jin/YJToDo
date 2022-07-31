@@ -24,6 +24,41 @@ public class ApprovalRepositorySupportImpl extends QuerydslRepositorySupport imp
     }
 
     @Override
+    public Integer findMaxApprovalNumber() {
+        QApproval approval = QApproval.approval;
+        return jpaQueryFactory.select(approval.approvalNumber.max())
+                .from(approval)
+                .fetchOne();
+
+    }
+
+    @Override
+    public ApprovalDto.approvalDetail approvalDetail(Long approvalId) {
+        QApproval approval = QApproval.approval;
+
+        // 조회 조건
+        final BooleanExpression isApprovalId = approval.id.eq(approvalId);
+
+        // flag 조건
+        final BooleanExpression isUseYn = approval.useYn.eq('Y');
+        final BooleanExpression isDelYn = approval.delYn.eq('N');
+        return jpaQueryFactory.select(Projections.constructor(ApprovalDto.approvalDetail.class,
+                                    approval.title,
+                                    approval.content,
+                                    approval.approvalStatus,
+                                    approval.approvalType,
+                                    approval.approvalNumber,
+                                    approval.createDateTime
+                ))
+                                .from(approval)
+                                .where(isApprovalId
+                                        .and(isUseYn)
+                                        .and(isDelYn)
+                                )
+                .fetchFirst();
+    }
+
+    @Override
     public List<ApprovalDto.approvalList> approvalList() {
         QApproval approval = QApproval.approval;
 
@@ -46,4 +81,5 @@ public class ApprovalRepositorySupportImpl extends QuerydslRepositorySupport imp
                 .orderBy(approval.createDateTime.desc())
                 .fetch();
     }
+
 }

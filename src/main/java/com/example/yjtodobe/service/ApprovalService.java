@@ -15,4 +15,9 @@ public interface ApprovalService {
      *
      */
     List<ApprovalDto.approvalList> approvalList();
+
+    /**
+     *
+     */
+    ApprovalDto.approvalDetail approvalDetail(ApprovalDto.approvalDetailParam param);
 }

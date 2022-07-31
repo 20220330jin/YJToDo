@@ -25,10 +25,16 @@ public class Approval extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ApprovalStatusEnum approvalStatus;
 
-    public Approval(String title, String content, ApprovalStatusEnum approvalStatus){
+    private Integer approvalNumber;
+
+    public Approval(String title, String content, ApprovalStatusEnum approvalStatus, ApprovalTypeEnum approvalType,
+                    Integer approvalNumber
+                    ){
         this.title = title;
         this.content = content;
         this.approvalStatus = approvalStatus;
+        this.approvalType = approvalType;
+        this.approvalNumber = approvalNumber;
     }
 
     // 결재요청
@@ -37,6 +43,7 @@ public class Approval extends BaseEntity {
         this.content = param.getContent();
         this.approvalStatus = ApprovalStatusEnum.REQUEST;
         this.approvalType = param.getApprovalType().equals(ApprovalTypeEnum.VACATION.name()) ? ApprovalTypeEnum.VACATION : ApprovalTypeEnum.PAYMENT;
+        this.approvalNumber = param.getApprovalNumber();
     }
 
     public static Supplier<Approval> approvalRequest(ApprovalDto.approvalRequestParam param){

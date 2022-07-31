@@ -1,5 +1,6 @@
 package com.example.yjtodobe.api;
 
+import com.example.yjtodobe.domain.Approval;
 import com.example.yjtodobe.model.ApprovalDto;
 import com.example.yjtodobe.service.ApprovalService;
 import lombok.NonNull;
@@ -18,7 +19,7 @@ public class ApprovalRestController {
     final ApprovalService approvalService;
 
     @PostMapping("/approvalRequest")
-    void approvalRequest(@RequestBody ApprovalDto.approvalRequestParam param){
+    public void approvalRequest(@RequestBody ApprovalDto.approvalRequestParam param){
         approvalService.approvalRequest(param);
     }
 
@@ -27,7 +28,7 @@ public class ApprovalRestController {
      * @return
      */
     @GetMapping("/approvalList")
-    List<ApprovalDto.approvalList> approvalList(){
+    public List<ApprovalDto.approvalList> approvalList(){
         return approvalService.approvalList();
     }
 
@@ -36,4 +37,8 @@ public class ApprovalRestController {
      */
     // {params:{key: key}}
     //Model Attribute
+    @GetMapping("/approvalDetail")
+    public ApprovalDto.approvalDetail approvalDetail(@ModelAttribute ApprovalDto.approvalDetailParam param){
+        return approvalService.approvalDetail(param);
+    }
 }
