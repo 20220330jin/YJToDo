@@ -19,6 +19,8 @@ public class ApprovalDto {
 
         private String approvalType;
 
+        private String userName;
+
         private Integer approvalNumber;
 
     }
@@ -31,13 +33,15 @@ public class ApprovalDto {
         private String approvalType;
         private LocalDateTime createDateTime;
         private Long id;
+        private String requestUsername;
 
         public approvalList(String title,
                             String content,
                             ApprovalStatusEnum approvalStatus,
                             ApprovalTypeEnum approvalType,
                             LocalDateTime createDateTime,
-                            Long id
+                            Long id,
+                            String requestUsername
                             ){
             this.title = title;
             this.content = content;
@@ -45,6 +49,7 @@ public class ApprovalDto {
             this.approvalType = approvalType.getDescription();
             this.createDateTime = createDateTime;
             this.id = id;
+            this.requestUsername = requestUsername;
         }
     }
 
@@ -65,13 +70,15 @@ public class ApprovalDto {
         private String approvalType;
         private Integer approvalNumber;
         private LocalDateTime createDateTime;
+        private String requestUserName;
 
         public approvalDetail(String title,
                               String content,
                               ApprovalStatusEnum approvalStatus,
                               ApprovalTypeEnum approvalType,
                               Integer approvalNumber,
-                              LocalDateTime createDateTime
+                              LocalDateTime createDateTime,
+                              String requestUserName
         ){
             this.title = title;
             this.content = content;
@@ -79,6 +86,7 @@ public class ApprovalDto {
             this.approvalType = approvalType.getDescription();
             this.approvalNumber= approvalNumber;
             this.createDateTime = createDateTime;
+            this.requestUserName = requestUserName;
 
         }
     }

@@ -27,6 +27,8 @@ public class Approval extends BaseEntity {
 
     private Integer approvalNumber;
 
+    private String requestUserName;
+
     public Approval(String title, String content, ApprovalStatusEnum approvalStatus, ApprovalTypeEnum approvalType,
                     Integer approvalNumber
                     ){
@@ -44,6 +46,7 @@ public class Approval extends BaseEntity {
         this.approvalStatus = ApprovalStatusEnum.REQUEST;
         this.approvalType = param.getApprovalType().equals(ApprovalTypeEnum.VACATION.name()) ? ApprovalTypeEnum.VACATION : ApprovalTypeEnum.PAYMENT;
         this.approvalNumber = param.getApprovalNumber();
+        this.requestUserName = param.getUserName();
     }
 
     public static Supplier<Approval> approvalRequest(ApprovalDto.approvalRequestParam param){

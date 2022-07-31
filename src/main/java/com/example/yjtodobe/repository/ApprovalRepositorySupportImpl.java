@@ -48,7 +48,8 @@ public class ApprovalRepositorySupportImpl extends QuerydslRepositorySupport imp
                                     approval.approvalStatus,
                                     approval.approvalType,
                                     approval.approvalNumber,
-                                    approval.createDateTime
+                                    approval.createDateTime,
+                                    approval.requestUserName
                 ))
                                 .from(approval)
                                 .where(isApprovalId
@@ -72,7 +73,8 @@ public class ApprovalRepositorySupportImpl extends QuerydslRepositorySupport imp
                     approval.approvalStatus,
                     approval.approvalType,
                     approval.createDateTime,
-                    approval.id
+                    approval.id,
+                    approval.requestUserName
                 ))
                 .from(approval)
                 .where(isUseYn
