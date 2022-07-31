@@ -34,12 +34,16 @@ public class ApprovalRepositorySupportImpl extends QuerydslRepositorySupport imp
         return jpaQueryFactory.select(Projections.constructor(ApprovalDto.approvalList.class,
                     approval.title,
                     approval.content,
-                    approval.approvalStatus
+                    approval.approvalStatus,
+                    approval.approvalType,
+                    approval.createDateTime,
+                    approval.id
                 ))
                 .from(approval)
                 .where(isUseYn
                         .and(isDelYn)
                 )
+                .orderBy(approval.createDateTime.desc())
                 .fetch();
     }
 }
