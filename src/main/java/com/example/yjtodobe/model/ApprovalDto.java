@@ -34,6 +34,7 @@ public class ApprovalDto {
         private LocalDateTime createDateTime;
         private Long id;
         private String requestUsername;
+        private LocalDateTime confirmDate;
 
         public approvalList(String title,
                             String content,
@@ -41,7 +42,8 @@ public class ApprovalDto {
                             ApprovalTypeEnum approvalType,
                             LocalDateTime createDateTime,
                             Long id,
-                            String requestUsername
+                            String requestUsername,
+                            LocalDateTime confirmDate
                             ){
             this.title = title;
             this.content = content;
@@ -50,6 +52,7 @@ public class ApprovalDto {
             this.createDateTime = createDateTime;
             this.id = id;
             this.requestUsername = requestUsername;
+            this.confirmDate = confirmDate;
         }
     }
 
@@ -89,5 +92,11 @@ public class ApprovalDto {
             this.requestUserName = requestUserName;
 
         }
+    }
+
+    @Getter
+    @Setter
+    public static class approvalConfirmParam {
+        private Long approvalId;
     }
 }

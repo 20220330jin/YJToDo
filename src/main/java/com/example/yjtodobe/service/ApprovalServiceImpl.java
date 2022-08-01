@@ -52,4 +52,13 @@ public class ApprovalServiceImpl implements ApprovalService {
         Long approvalId = param.getApprovalId();
         return approvalRepositorySupport.approvalDetail(approvalId);
     }
+
+    @Override
+    public void approvalConfirm(ApprovalDto.approvalConfirmParam param) {
+//        if(param.getApprovalId() == 0){
+//            System.out.println("approvalID가 존재하지 않습니다");
+//        }
+        Long approvalId = param.getApprovalId();
+        approvalRepositoryManager.approvalConfirm(approvalId);
+    }
 }

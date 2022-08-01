@@ -20,4 +20,9 @@ public interface ApprovalService {
      *
      */
     ApprovalDto.approvalDetail approvalDetail(ApprovalDto.approvalDetailParam param);
+
+    /**
+     * 결재 승인
+     */
+    void approvalConfirm(ApprovalDto.approvalConfirmParam param);
 }

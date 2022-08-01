@@ -41,4 +41,12 @@ public class ApprovalRestController {
     public ApprovalDto.approvalDetail approvalDetail(@ModelAttribute ApprovalDto.approvalDetailParam param){
         return approvalService.approvalDetail(param);
     }
+
+    /**
+     * 결재 승인
+     */
+    @PutMapping("/approvalConfirm")
+    public void approvalConfirm(@RequestBody ApprovalDto.approvalConfirmParam param){
+        approvalService.approvalConfirm(param);
+    }
 }

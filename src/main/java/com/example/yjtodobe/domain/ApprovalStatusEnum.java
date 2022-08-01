@@ -5,7 +5,8 @@ import lombok.Getter;
 public enum ApprovalStatusEnum {
     NONE(0, "NONE", "빈 데이터"),
     REQUEST(10, "REQUEST", "결재요청"),
-    REJECT(20, "REJECT", "결재반려");
+    REJECT(20, "REJECT", "결재반려"),
+    CONFIRM(30, "CONFIRM", "결재승인");
 
     private int code;
 

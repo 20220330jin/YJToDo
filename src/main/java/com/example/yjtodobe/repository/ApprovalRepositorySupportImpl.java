@@ -74,7 +74,8 @@ public class ApprovalRepositorySupportImpl extends QuerydslRepositorySupport imp
                     approval.approvalType,
                     approval.createDateTime,
                     approval.id,
-                    approval.requestUserName
+                    approval.requestUserName,
+                    approval.confirmDate
                 ))
                 .from(approval)
                 .where(isUseYn

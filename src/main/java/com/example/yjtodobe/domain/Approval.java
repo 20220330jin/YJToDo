@@ -4,6 +4,7 @@ import com.example.yjtodobe.model.ApprovalDto;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.function.Supplier;
 
 @Entity
@@ -29,14 +30,17 @@ public class Approval extends BaseEntity {
 
     private String requestUserName;
 
+    private LocalDateTime confirmDate;
+
     public Approval(String title, String content, ApprovalStatusEnum approvalStatus, ApprovalTypeEnum approvalType,
-                    Integer approvalNumber
+                    Integer approvalNumber, LocalDateTime confirmDate
                     ){
         this.title = title;
         this.content = content;
         this.approvalStatus = approvalStatus;
         this.approvalType = approvalType;
         this.approvalNumber = approvalNumber;
+        this.confirmDate = confirmDate;
     }
 
     // 결재요청
