@@ -19,14 +19,8 @@ public class MainDashBoardServiceImpl implements MainDashBoardService {
     final MainDashBoardRepositorySupport mainDashBoardRepositorySupport;
 
     @Override
-    public void create(MainDashBoardDto.createParam createParam) {
-        // 파라미터로 받은 값이 비어있는지 체크하여 비어있지 않을때만 manager로 보내 db에 저장
-        if(!createParam.getContent().equals(null)){
-
-            // db에 저장할 data 전달
-            mainDashBoardRepositoryManager.create(createParam);
-        }
-
+    public MainDashBoardDto.create create(MainDashBoardDto.createParam createParam) {
+        return mainDashBoardRepositoryManager.create(createParam);
     }
 
     @Override

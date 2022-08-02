@@ -16,8 +16,8 @@ public class MainDashBoardRestController {
     final MainDashBoardService mainDashBoardService;
 
     @PostMapping("/create")
-    public void create(@RequestBody MainDashBoardDto.createParam createParam){
-        mainDashBoardService.create(createParam);
+    public MainDashBoardDto.create create(@RequestBody MainDashBoardDto.createParam createParam){
+        return mainDashBoardService.create(createParam);
     };
 
     // DashBoard 글 목록을 불러온다

@@ -1,6 +1,8 @@
 package com.example.yjtodobe.model;
 
+import com.example.yjtodobe.domain.MainDashBoard;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -12,10 +14,16 @@ public class MainDashBoardDto {
         private String content;
     }
 
+    @Setter
+    @Getter
     public static class create {
         private long id;
 
         private String content;
+
+        public create(MainDashBoard board){
+            this.id = board.id;
+        }
     }
 
     @Getter
