@@ -10,4 +10,9 @@ public interface MainDashBoardRepositoryManager {
      * @return
      */
     MainDashBoardDto.create create(MainDashBoardDto.createParam createParam);
+
+    /**
+     *
+     */
+    void deleteMainDashboard(Long mainDashboardId);
 }

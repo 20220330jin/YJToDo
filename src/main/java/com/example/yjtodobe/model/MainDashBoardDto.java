@@ -44,5 +44,10 @@ public class MainDashBoardDto {
         }
     }
 
+    @Getter
+    public static class deleteParam {
+        private Long mainDashboardId;
+    }
+
 
 }

@@ -1,12 +1,15 @@
 package com.example.yjtodobe.repository;
 
 import com.example.yjtodobe.domain.MainDashBoard;
+import com.example.yjtodobe.domain.QMainDashBoard;
 import com.example.yjtodobe.model.MainDashBoardDto;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDateTime;
 
 
 @Repository
@@ -31,5 +34,20 @@ public class MainDashBoardRepositoryManagerImpl extends QuerydslRepositorySuppor
         entityManager.persist(mainDashBoard);
 
         return new MainDashBoardDto.create(mainDashBoard);
+    }
+
+    @Override
+    public void deleteMainDashboard(Long mainDashboardId) {
+        QMainDashBoard mainDashBoard = QMainDashBoard.mainDashBoard;
+
+        // 삭제조건
+        final BooleanExpression isMainDashboardId = mainDashBoard.id.eq(mainDashboardId);
+
+        update(mainDashBoard)
+                .set(mainDashBoard.updateDateTime, LocalDateTime.now())
+                .set(mainDashBoard.useYn, 'N')
+                .set(mainDashBoard.delYn, 'Y')
+                .where(isMainDashboardId)
+                .execute();
     }
 }

@@ -29,4 +29,11 @@ public class MainDashBoardServiceImpl implements MainDashBoardService {
 
         return boardList;
     }
+
+    @Override
+    public void deleteMainDashboard(MainDashBoardDto.deleteParam param) {
+        Long mainDashboardId = param.getMainDashboardId();
+
+        mainDashBoardRepositoryManager.deleteMainDashboard(mainDashboardId);
+    }
 }

@@ -35,6 +35,11 @@ public class MainDashBoardRestController {
      * 대시보드 삭제
      */
     // Request body
+    @PutMapping("/delete")
+    public void deleteMainDashBoard(@RequestBody MainDashBoardDto.deleteParam param){
+        mainDashBoardService.deleteMainDashboard(param);
+    }
+
 
 
 }

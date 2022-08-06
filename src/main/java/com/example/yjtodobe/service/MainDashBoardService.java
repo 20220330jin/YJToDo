@@ -16,4 +16,9 @@ public interface MainDashBoardService {
      * DashBoard 글 전체목록 조회
      */
     List<MainDashBoardDto.list> list();
+
+    /**
+     *
+     */
+    void deleteMainDashboard(MainDashBoardDto.deleteParam param);
 }
