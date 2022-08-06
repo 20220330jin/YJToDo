@@ -3,6 +3,7 @@ package com.example.yjtodobe.model;
 import java.time.LocalDateTime;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class YjBoardDto {
 
@@ -52,19 +53,39 @@ public class YjBoardDto {
 
         private String author;
 
-        private long id;
+        private LocalDateTime createDateTime;
 
-        public detailRead(String title, String content, String author, long id) {
+        private long id;
+        
+
+        public detailRead(String title, String content, String author, LocalDateTime createDateTime, long id) {
             this.title = title;
             this.content = content;
             this.author = author;
+            this.createDateTime = createDateTime;
             this.id = id;
+            
         }
     }
 
     @Getter
+    @Setter
     public static class detailReadParam {
-        private long id;
+        private long detailParamsId;
         
+    }
+    @Getter
+    @Setter
+    public static class boardDeleteParam {
+        private long detailParamId;
+    }
+
+    @Getter
+    @Setter
+    public static class boardUpdateParam {
+        private long id;
+        private String title;
+        private String content;
+        private String author;
     }
 }

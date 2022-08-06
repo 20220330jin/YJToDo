@@ -50,6 +50,8 @@ public class YjBoardRepositorySupportImpl extends QuerydslRepositorySupport impl
                                 .fetch();
     }
 
+
+    // detail read
     @Override
     public YjBoardDto.detailRead detailRead(YjBoardDto.detailReadParam param) {
         QYjBoard yjBoard = QYjBoard.yjBoard;
@@ -57,20 +59,23 @@ public class YjBoardRepositorySupportImpl extends QuerydslRepositorySupport impl
           // flag 조건
         final BooleanExpression isUseYn = yjBoard.useYn.eq('Y');
         final BooleanExpression isDelYn = yjBoard.delYn.eq('N');
-        final BooleanExpression isYjboardId = yjBoard.id.eq(param.getId());
-
+        // id -> getId()
+        // detailParamsId -> 
+        final BooleanExpression isYjboardId = yjBoard.id.eq(param.getDetailParamsId());
 
         return jpaQueryFactory.select(Projections.constructor(YjBoardDto.detailRead.class,
                                     yjBoard.title,
                                     yjBoard.content,
-                                    yjBoard.author,
+                                    yjBoard.author,                                    
+                                    yjBoard.createDateTime,
                                     yjBoard.id
+                                   
         
         ))
                                 .from(yjBoard)
-                                .where(isUseYn
+                                .where(isYjboardId
                                     .and(isDelYn)
-                                    .and(isYjboardId)
+                                    .and(isUseYn)
                                 )
         .fetchFirst();
     }

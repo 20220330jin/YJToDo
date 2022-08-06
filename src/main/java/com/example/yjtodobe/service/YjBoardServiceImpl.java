@@ -7,6 +7,8 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.example.yjtodobe.model.YjBoardDto;
+import com.example.yjtodobe.model.YjBoardDto.boardDeleteParam;
+import com.example.yjtodobe.model.YjBoardDto.boardUpdateParam;
 import com.example.yjtodobe.repository.YjBoardRepositoryManager;
 import com.example.yjtodobe.repository.YjBoardRepositorySupport;
 
@@ -40,7 +42,19 @@ public class YjBoardServiceImpl implements YjBoardService{
     
     @Override
     public YjBoardDto.detailRead detailRead(YjBoardDto.detailReadParam param) {
-        
+
         return yjBoardRepositorySupport.detailRead(param);
+       
+    }
+
+    @Override
+    public void boardDelete(boardDeleteParam param) {
+        yjBoardRepositoryManager.boardDelete(param);
+
+    }
+
+    @Override
+    public void boardUpdate(boardUpdateParam param) {
+        yjBoardRepositoryManager.boardUpdate(param);
     }
 }

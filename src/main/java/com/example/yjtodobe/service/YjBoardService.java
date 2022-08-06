@@ -10,4 +10,8 @@ public interface YjBoardService {
     List<YjBoardDto.read> read();
 
     YjBoardDto.detailRead detailRead(YjBoardDto.detailReadParam param);
+
+    void boardDelete(YjBoardDto.boardDeleteParam param);
+
+    void boardUpdate(YjBoardDto.boardUpdateParam param);
 }

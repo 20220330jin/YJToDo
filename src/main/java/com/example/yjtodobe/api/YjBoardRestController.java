@@ -40,4 +40,15 @@ public class YjBoardRestController {
     public YjBoardDto.detailRead detailRead(@ModelAttribute YjBoardDto.detailReadParam param) {
         return yjBoardService.detailRead(param);
     }
+    
+    // delete
+    @PutMapping("/delete")
+    public void delete(@RequestBody YjBoardDto.boardDeleteParam param){
+        yjBoardService.boardDelete(param);
+    }
+    // update
+    @PutMapping("/update")
+    public void update(@RequestBody YjBoardDto.boardUpdateParam param){
+        yjBoardService.boardUpdate(param);
+    }
 }
