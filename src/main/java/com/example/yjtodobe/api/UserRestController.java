@@ -1,6 +1,7 @@
 package com.example.yjtodobe.api;
 
 import com.example.yjtodobe.config.JwtTokenProvider;
+import com.example.yjtodobe.domain.BaseEntity;
 import com.example.yjtodobe.domain.User;
 import com.example.yjtodobe.model.MemberDto;
 import com.example.yjtodobe.repository.UserRepository;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin("http://localhost:3002")
-public class UserRestController {
+public class UserRestController extends BaseEntity {
 
     private final PasswordEncoder passwordEncoder;
 
@@ -29,10 +30,10 @@ public class UserRestController {
     }
 
     @PostMapping("/login")
-    public MemberDto.login login(@RequestBody @NotNull MemberDto.loginParam loginMember) {
-        User user = userRepository.findByUsername(loginMember.getUsername())
+    public MemberDto.login login(@RequestBody @NotNull MemberDto.loginParam param) {
+        User user = userRepository.findByUsername(param.getUsername())
                 .orElseThrow(() -> new IllegalArgumentException("가입되지 않은 ID 입니다."));
-        if (!passwordEncoder.matches(loginMember.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(param.getPassword(), user.getPassword())) {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
         return new MemberDto.login(user.getUsername(), user.getName(),"true",jwtTokenProvider.createToken(user.getUsername(), user.getRoles()));

@@ -1,9 +1,12 @@
 package com.example.yjtodobe.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class MemberDto {
 
+    @Getter
+    @Setter
     public static class login {
         private String username;
         private String nickname;
@@ -19,6 +22,7 @@ public class MemberDto {
     }
 
     @Getter
+    @Setter
     public static class loginParam {
 
         private String username;
