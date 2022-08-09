@@ -4,16 +4,15 @@ import com.example.yjtodobe.config.JwtTokenProvider;
 import com.example.yjtodobe.domain.User;
 import com.example.yjtodobe.model.MemberDto;
 import com.example.yjtodobe.repository.UserRepository;
+import com.example.yjtodobe.service.MemberService;
 import com.sun.istack.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:3002")
 public class UserRestController {
 
     private final PasswordEncoder passwordEncoder;
@@ -21,6 +20,13 @@ public class UserRestController {
     private final JwtTokenProvider jwtTokenProvider;
 
     private final UserRepository userRepository;
+
+    private final MemberService memberService;
+    
+    @PostMapping("/signup")
+    public Long signup(@RequestBody MemberDto.signupParam param){
+        return memberService.signup(param);
+    }
 
     @PostMapping("/login")
     public MemberDto.login login(@RequestBody @NotNull MemberDto.loginParam loginMember) {

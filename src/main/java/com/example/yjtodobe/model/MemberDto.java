@@ -26,4 +26,19 @@ public class MemberDto {
         private String password;
 
     }
+
+    public static class signup {
+
+    }
+
+    @Getter
+    public static class signupParam {
+        private String username;
+
+        private String password;
+
+        private String name;
+
+        private String email;
+    }
 }

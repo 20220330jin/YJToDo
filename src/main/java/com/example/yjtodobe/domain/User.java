@@ -34,6 +34,9 @@ public class User implements UserDetails {
 
     private Boolean enabled;
 
+    @Enumerated(EnumType.STRING)
+    private MemberTypeEnum memberType;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();

@@ -1,5 +1,7 @@
 package com.example.yjtodobe.service;
 
+import com.example.yjtodobe.domain.CustomCode;
+import com.example.yjtodobe.exception.HJException;
 import com.example.yjtodobe.model.MainDashBoardDto;
 import com.example.yjtodobe.repository.MainDashBoardRepositoryManager;
 import com.example.yjtodobe.repository.MainDashBoardRepositorySupport;
@@ -32,6 +34,9 @@ public class MainDashBoardServiceImpl implements MainDashBoardService {
 
     @Override
     public void deleteMainDashboard(MainDashBoardDto.deleteParam param) {
+        if(param.getMainDashboardId() == 0L){
+            throw new HJException(CustomCode.NOID, "no");
+        }
         Long mainDashboardId = param.getMainDashboardId();
 
         mainDashBoardRepositoryManager.deleteMainDashboard(mainDashboardId);
