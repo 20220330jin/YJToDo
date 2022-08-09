@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin("http://localhost:3002")
-public class UserRestController extends BaseEntity {
+public class UserRestController {
 
     private final PasswordEncoder passwordEncoder;
 
