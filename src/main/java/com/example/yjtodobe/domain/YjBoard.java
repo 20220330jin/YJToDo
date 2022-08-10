@@ -19,7 +19,7 @@ public class YjBoard extends BaseEntity{
 
     @Id
     @GeneratedValue
-    @Column(name = "YjBoard_id")
+    @Column(name = "YjBoardId")
     public Long id;
 
     public String title;
