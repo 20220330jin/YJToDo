@@ -21,4 +21,9 @@ public interface MainDashBoardService {
      *
      */
     void deleteMainDashboard(MainDashBoardDto.deleteParam param);
+
+    /**
+     * Dashboard 수정
+     */
+    void updateMainDashboard(MainDashBoardDto.updateParam param);
 }

@@ -49,5 +49,11 @@ public class MainDashBoardDto {
         private Long mainDashboardId;
     }
 
+    @Getter
+    public static class updateParam {
+        private Long mainDashboardId;
+        private String content;
+    }
+
 
 }

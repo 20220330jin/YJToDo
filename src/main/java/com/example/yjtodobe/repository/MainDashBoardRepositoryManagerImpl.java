@@ -50,4 +50,25 @@ public class MainDashBoardRepositoryManagerImpl extends QuerydslRepositorySuppor
                 .where(isMainDashboardId)
                 .execute();
     }
+
+    @Override
+    public void updateMainDashboard(MainDashBoardDto.updateParam param) {
+        QMainDashBoard mainDashBoard = QMainDashBoard.mainDashBoard;
+
+        // 수정 조건
+        final BooleanExpression isMainDashboadId = mainDashBoard.id.eq(param.getMainDashboardId());
+
+        // flag 조건
+        final BooleanExpression isUseYn = mainDashBoard.useYn.eq('Y');
+        final BooleanExpression isDelYn = mainDashBoard.delYn.eq('N');
+
+        jpaQueryFactory.update(mainDashBoard)
+                .set(mainDashBoard.updateDateTime, LocalDateTime.now())
+                .set(mainDashBoard.content, param.getContent())
+                .where(isUseYn
+                        .and(isDelYn)
+                        .and(isMainDashboadId)
+                )
+                .execute();
+    }
 }

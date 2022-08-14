@@ -40,6 +40,11 @@ public class MainDashBoardRestController {
         mainDashBoardService.deleteMainDashboard(param);
     }
 
+    @PutMapping("/update")
+    public void updateMainDashBoard(@RequestBody MainDashBoardDto.updateParam param){
+        mainDashBoardService.updateMainDashboard(param);
+    }
+
 
 
 }

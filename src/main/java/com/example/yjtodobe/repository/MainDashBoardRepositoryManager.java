@@ -15,4 +15,9 @@ public interface MainDashBoardRepositoryManager {
      *
      */
     void deleteMainDashboard(Long mainDashboardId);
+
+    /**
+     * 대시보드 수정
+     */
+    void updateMainDashboard(MainDashBoardDto.updateParam param);
 }
