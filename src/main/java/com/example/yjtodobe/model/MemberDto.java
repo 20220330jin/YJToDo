@@ -1,5 +1,7 @@
 package com.example.yjtodobe.model;
 
+import java.time.LocalDateTime;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,5 +46,29 @@ public class MemberDto {
         private String name;
 
         private String email;
+    }
+    
+    @Getter
+    public static class list {
+        private Long id;
+
+        private String name;
+
+        private String username;
+
+        private LocalDateTime createDateTime;
+
+        // private Character useYn;
+
+        // private Character delYn;
+
+        public list(Long id, String name, String username, LocalDateTime createDateTime){
+            this.id = id;
+            this.name = name;
+            this.username = username;
+            this.createDateTime = createDateTime;
+            // this.delYn = delYn;
+            // this.useYn = useYn;
+        }
     }
 }

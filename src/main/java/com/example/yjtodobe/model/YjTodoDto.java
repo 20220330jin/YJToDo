@@ -1,6 +1,5 @@
 package com.example.yjtodobe.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.example.yjtodobe.domain.YjTodo;
@@ -34,19 +33,22 @@ public class YjTodoDto {
 
         private String todoContent;
 
-        private LocalDateTime createDateTime;
+        // private LocalDateTime createDateTime;
+
+        private LocalDateTime updateDateTime;
 
         private Character completedYn;
 
-
         public list(Long id,
                     String todoContent,
-                    LocalDateTime createDateTime,
+                    // LocalDateTime createDateTime,
+                    LocalDateTime updateDateTime,
                     Character completedYn
                     ){
             this.id = id;
             this.todoContent = todoContent;
-            this.createDateTime = createDateTime;
+            // this.createDateTime = createDateTime;
+            this.updateDateTime = updateDateTime;
             this.completedYn = completedYn;
         }
     }

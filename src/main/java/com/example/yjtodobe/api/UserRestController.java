@@ -8,6 +8,9 @@ import com.example.yjtodobe.repository.UserRepository;
 import com.example.yjtodobe.service.MemberService;
 import com.sun.istack.NotNull;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,5 +40,11 @@ public class UserRestController {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
         return new MemberDto.login(user.getUsername(), user.getName(),"true",jwtTokenProvider.createToken(user.getUsername(), user.getRoles()));
+    }
+
+    // 유저 리스트 조회
+    @GetMapping("/users/list")
+    public List<MemberDto.list> list(){
+        return memberService.list();
     }
 }

@@ -35,13 +35,13 @@ public class YjTodoRepositorySupportImpl extends QuerydslRepositorySupport imple
         return jpaQueryFactory.select(Projections.constructor(YjTodoDto.list.class,
                 yjTodo.id,
                 yjTodo.todoContent,
-                yjTodo.createDateTime,
+                yjTodo.updateDateTime,
                 yjTodo.completedYn
                 )).from(yjTodo)
                 .where(isDelYn
                         .and(isUseYn)
                 )
-                .orderBy(yjTodo.createDateTime.desc())
+                .orderBy(yjTodo.updateDateTime.desc())
                 .fetch();
     }
 
