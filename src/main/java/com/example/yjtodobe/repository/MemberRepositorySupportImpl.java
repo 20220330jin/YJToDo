@@ -36,10 +36,10 @@ public class MemberRepositorySupportImpl extends QuerydslRepositorySupport imple
         final BooleanExpression isDelYn = user.delYn.eq('N');
 
         return jpaQueryFactory.select(Projections.constructor(MemberDto.list.class,
-                user.id,
-                user.createDateTime,
-                user.username,
-                user.name
+                        user.id,
+                        user.name,
+                        user.username,
+                        user.createDateTime
                 )).from(user)
                 .where(isDelYn
                         .and(isUseYn))
