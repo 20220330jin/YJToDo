@@ -13,7 +13,7 @@ public interface YjTodoService {
     * 전체 조회 용도
     * @param param
     */
-    List<YjTodoDto.list> list();
+    YjTodoDto.listAll list();
 
     void deleteTodo(YjTodoDto.todoDeleteParam param);
 
