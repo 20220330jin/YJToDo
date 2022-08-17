@@ -1,6 +1,7 @@
 package com.example.yjtodobe.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.example.yjtodobe.domain.YjTodo;
 
@@ -25,6 +26,16 @@ public class YjTodoDto {
         public create(YjTodo todo){
             this.id = todo.id;
         }
+    }
+
+    @Getter
+    @Setter
+    public static class listAll {
+        private Integer totalCount;
+
+        private Integer checkedCount;
+
+        private List<YjTodoDto.list> list;
     }
 
     @Getter

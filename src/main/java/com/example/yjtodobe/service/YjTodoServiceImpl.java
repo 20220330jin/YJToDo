@@ -26,10 +26,24 @@ public class YjTodoServiceImpl implements YjTodoService {
     }
 
 	@Override
-	public List<YjTodoDto.list> list() {
+	public YjTodoDto.listAll list() {
 		List<YjTodoDto.list> todoList = yjTodoRepositorySupport.list();
+        YjTodoDto.listAll listAll = new YjTodoDto.listAll();
 
-        return todoList;
+        int totalCount = todoList.size();
+
+        int checkedCount = 0;
+        for(YjTodoDto.list todoItem : todoList){
+            if(todoItem.getCompletedYn() == 'Y'){
+                checkedCount++;
+            }
+        }
+        
+        listAll.setList(todoList);
+        listAll.setTotalCount(totalCount);
+        listAll.setCheckedCount(checkedCount);
+
+        return listAll;
 	}
     @Override
     public void deleteTodo(YjTodoDto.todoDeleteParam param) {

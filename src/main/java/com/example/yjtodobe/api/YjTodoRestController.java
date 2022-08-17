@@ -1,6 +1,7 @@
 package com.example.yjtodobe.api;
 
 import com.example.yjtodobe.model.YjTodoDto;
+import com.example.yjtodobe.model.YjTodoDto.listAll;
 import com.example.yjtodobe.service.YjTodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class YjTodoRestController {
     };
 
     @GetMapping("/list")
-    public List<YjTodoDto.list> list(){
+    public YjTodoDto.listAll list(){
         return yjTodoService.list();
     }
 
