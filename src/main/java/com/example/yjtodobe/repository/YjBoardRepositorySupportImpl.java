@@ -49,6 +49,38 @@ public class YjBoardRepositorySupportImpl extends QuerydslRepositorySupport impl
                                 .orderBy(yjBoard.createDateTime.desc())
                                 .fetch();
     }
+    @Override
+    public List<YjBoardDto.read> search(String keyword, String type) {
+        
+        QYjBoard yjBoard = QYjBoard.yjBoard;
+
+        final BooleanExpression isUseYn = yjBoard.useYn.eq('Y');
+        final BooleanExpression isDelYn = yjBoard.delYn.eq('N');
+        
+        BooleanExpression isTitle = null;
+        BooleanExpression isAuthor = null;
+
+        if(type.equals("TITLE")){
+            isTitle = yjBoard.title.contains(keyword);
+        }else if(type.equals("AUTHOR")){
+            isAuthor = yjBoard.author.contains(keyword);
+        }
+      
+        return jpaQueryFactory.select(Projections.constructor(YjBoardDto.read.class, 
+                                    yjBoard.id,
+                                    yjBoard.title,
+                                    yjBoard.content,
+                                    yjBoard.author,
+                                    yjBoard.createDateTime
+        )) 
+                                .from(yjBoard)
+                                .where(isUseYn
+                                    .and(isDelYn)
+                                    .and(isTitle)
+                                    .and(isAuthor)
+                                )
+                                .fetch();
+    }
 
 
     // detail read
@@ -79,5 +111,5 @@ public class YjBoardRepositorySupportImpl extends QuerydslRepositorySupport impl
                                 )
         .fetchFirst();
     }
-    
+
 }

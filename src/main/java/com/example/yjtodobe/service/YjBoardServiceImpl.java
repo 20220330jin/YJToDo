@@ -39,6 +39,15 @@ public class YjBoardServiceImpl implements YjBoardService{
         
         return yjBoardRepositorySupport.read();
     }
+
+     @Override
+    public List<YjBoardDto.read> search(YjBoardDto.searchParam param) {
+
+        String searchKeyword = param.getSearchKeyword();
+        String searchType = param.getSearchType();
+     
+        return yjBoardRepositorySupport.search(searchKeyword, searchType);
+    }
     
     @Override
     public YjBoardDto.detailRead detailRead(YjBoardDto.detailReadParam param) {
@@ -57,4 +66,5 @@ public class YjBoardServiceImpl implements YjBoardService{
     public void boardUpdate(boardUpdateParam param) {
         yjBoardRepositoryManager.boardUpdate(param);
     }
+
 }

@@ -41,7 +41,30 @@ public class YjTodoRepositorySupportImpl extends QuerydslRepositorySupport imple
                 .where(isDelYn
                         .and(isUseYn)
                 )
-                // .orderBy(yjTodo.createDateTime.desc())
+                .orderBy(yjTodo.createDateTime.desc())
                 .fetch();
+    }
+
+    @Override
+    public char checkTodo(Long todoId) {
+        // TODO Auto-generated method stub
+        QYjTodo yjTodo = QYjTodo.yjTodo;
+
+        // 조회 조건
+        final BooleanExpression isTodoId = yjTodo.id.eq(todoId);
+
+        // flag 조건
+        final BooleanExpression isUseYn = yjTodo.useYn.eq('Y');
+        final BooleanExpression isDelYn = yjTodo.delYn.eq('N');
+
+        return jpaQueryFactory.select(yjTodo.completedYn)
+            .from(yjTodo)
+            .where(isTodoId
+            .and(isUseYn)
+            .and(isDelYn)
+            )
+            .fetchFirst();
+            
+        
     }
 }

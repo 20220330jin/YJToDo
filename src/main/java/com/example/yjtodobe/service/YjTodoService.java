@@ -9,9 +9,15 @@ public interface YjTodoService {
    
     YjTodoDto.create create(YjTodoDto.createParam createParam);
 
-   
+   /**
+    * 전체 조회 용도
+    * @param param
+    */
     List<YjTodoDto.list> list();
 
-    
     void deleteTodo(YjTodoDto.todoDeleteParam param);
+
+    void checkTodo(YjTodoDto.todoCheckParam param);
+
+    void editTodo(YjTodoDto.todoEditParam param);
 }

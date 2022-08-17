@@ -35,6 +35,12 @@ public class YjBoardRestController {
         return yjBoardService.read();
     };
 
+    // search
+    @GetMapping("/search")
+    public List<YjBoardDto.read> search(@ModelAttribute YjBoardDto.searchParam param) {
+        return yjBoardService.search(param);
+    };
+
     // detail 
     @GetMapping("/detail")
     public YjBoardDto.detailRead detailRead(@ModelAttribute YjBoardDto.detailReadParam param) {
@@ -51,4 +57,7 @@ public class YjBoardRestController {
     public void update(@RequestBody YjBoardDto.boardUpdateParam param){
         yjBoardService.boardUpdate(param);
     }
+  
 }
+    
+    

@@ -8,4 +8,7 @@ public interface YjTodoRepositoryManager {
 
     void deleteYjTodo(Long yjTodoId);
      
+    void checkTodo(Long todoId, char completedYn);  
+
+    void editTodo(YjTodoDto.todoEditParam param);
 }

@@ -36,13 +36,13 @@ public class YjTodoDto {
 
         private LocalDateTime createDateTime;
 
-        private char completedYn;
+        private Character completedYn;
 
 
         public list(Long id,
                     String todoContent,
                     LocalDateTime createDateTime,
-                    char completedYn
+                    Character completedYn
                     ){
             this.id = id;
             this.todoContent = todoContent;
@@ -56,4 +56,17 @@ public class YjTodoDto {
         private Long yjTodoId;
     }
 
+    @Getter
+    @Setter
+    public static class todoCheckParam {
+        private long yjTodoId;
+        // private char completedYn;
+    }
+
+    @Getter
+    public static class todoEditParam {
+        private Long todoId;
+
+        private String todoContent;
+    }
 }

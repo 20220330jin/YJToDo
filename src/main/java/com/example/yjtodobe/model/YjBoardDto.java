@@ -46,6 +46,42 @@ public class YjBoardDto {
     }
 
     @Getter
+    @Setter
+    public static class searchParam {
+
+        // 검색어
+        private String searchKeyword;
+
+        // 검색타입 : TITLE / AUTHOR
+        private String searchType;
+        
+    }
+
+    @Getter 
+    public static class search {
+        private long id;
+
+        private String title;
+
+        private String content;
+
+        private String author;
+
+        private LocalDateTime createDateTime;
+
+        // private String search;
+
+        public search(long id, String title, String content, String author, LocalDateTime createDateTime, String search){
+            this.id = id;
+            this.title = title;
+            this.content = content;
+            this.author = author;
+            this.createDateTime = createDateTime;
+            // this.search = search;
+        }
+    }
+
+    @Getter
     public static class detailRead {
         private String title;
 

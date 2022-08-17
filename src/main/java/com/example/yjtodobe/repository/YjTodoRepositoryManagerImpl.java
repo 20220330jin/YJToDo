@@ -3,7 +3,9 @@ package com.example.yjtodobe.repository;
 import com.example.yjtodobe.domain.QYjTodo;
 import com.example.yjtodobe.domain.YjTodo;
 import com.example.yjtodobe.model.YjTodoDto;
+import com.example.yjtodobe.model.YjTodoDto.todoCheckParam;
 import com.example.yjtodobe.model.YjTodoDto.todoDeleteParam;
+import com.example.yjtodobe.service.YjTodoServiceImpl;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -51,4 +53,36 @@ public class YjTodoRepositoryManagerImpl extends QuerydslRepositorySupport imple
                 .where(isYjTodoId)
                 .execute();
     }
+
+    @Override
+    public void checkTodo(Long todoId, char completedYn) {
+        QYjTodo yjTodo = QYjTodo.yjTodo;
+        
+        final  BooleanExpression isYjTodoId = yjTodo.id.eq(todoId);
+
+        jpaQueryFactory.update(yjTodo)
+                .set(yjTodo.updateDateTime, LocalDateTime.now() )
+                .set(yjTodo.completedYn, completedYn)
+                .where(isYjTodoId)
+                .execute();
+    }
+
+
+    // todoList 모달 수정 api
+    @Override
+    public void editTodo(YjTodoDto.todoEditParam param) {
+       QYjTodo yjTodo = QYjTodo.yjTodo;
+       
+       final BooleanExpression isYjTodoId = yjTodo.id.eq(param.getTodoId());
+
+       jpaQueryFactory.update(yjTodo)
+               .set(yjTodo.updateDateTime, LocalDateTime.now())
+               .set(yjTodo.todoContent, param.getTodoContent())
+               .where(isYjTodoId)
+               .execute();
+
+
+    }
+
+    
 }

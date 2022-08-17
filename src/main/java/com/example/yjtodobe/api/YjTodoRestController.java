@@ -29,4 +29,15 @@ public class YjTodoRestController {
     public void delete(@RequestBody YjTodoDto.todoDeleteParam param){
         yjTodoService.deleteTodo(param);
     }
+
+    @PutMapping("/check")
+    public void update(@RequestBody YjTodoDto.todoCheckParam param){
+        yjTodoService.checkTodo(param);
+    }
+
+    @PutMapping("/edit")
+    public void edit(@RequestBody YjTodoDto.todoEditParam param){
+        yjTodoService.editTodo(param);
+    }
+    
 }

@@ -1,6 +1,8 @@
 package com.example.yjtodobe.service;
 
 import com.example.yjtodobe.model.YjTodoDto;
+import com.example.yjtodobe.model.YjTodoDto.todoCheckParam;
+import com.example.yjtodobe.model.YjTodoDto.todoEditParam;
 import com.example.yjtodobe.repository.YjTodoRepositoryManager;
 import com.example.yjtodobe.repository.YjTodoRepositorySupport;
 import lombok.RequiredArgsConstructor;
@@ -34,5 +36,31 @@ public class YjTodoServiceImpl implements YjTodoService {
         Long yjTodoId = param.getYjTodoId();
         yjTodoRepositoryManager.deleteYjTodo(yjTodoId);
     }
+
+    @Override
+    public void checkTodo(todoCheckParam param) {
+        // case1. completedyn 이 y 일때 n으로 변경
+        // case2. completedyn 이 n 일때 y로 변경
+        // 디비버르 ㄹ보면 알수있다.
+        // 셀렉트 컴프리티드 와이앤 프롬 투두 웨얼을 아이디
+
+        Long todoId = param.getYjTodoId();
+        
+        char completedYn = yjTodoRepositorySupport.checkTodo(todoId);
+        if(completedYn == 'Y'){
+            completedYn = 'N';
+        }else if(completedYn == 'N'){
+            completedYn = 'Y';
+        }
+        
+        yjTodoRepositoryManager.checkTodo(todoId, completedYn);
+    }
+
+    @Override
+    public void editTodo(todoEditParam param) {
+        yjTodoRepositoryManager.editTodo(param);
+    }
+
+    
 }
 
