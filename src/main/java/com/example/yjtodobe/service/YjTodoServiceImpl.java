@@ -38,7 +38,7 @@ public class YjTodoServiceImpl implements YjTodoService {
                 checkedCount++;
             }
         }
-        
+
         listAll.setList(todoList);
         listAll.setTotalCount(totalCount);
         listAll.setCheckedCount(checkedCount);

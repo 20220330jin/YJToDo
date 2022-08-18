@@ -41,7 +41,7 @@ public class YjTodoRepositorySupportImpl extends QuerydslRepositorySupport imple
                 .where(isDelYn
                         .and(isUseYn)
                 )
-                .orderBy(yjTodo.updateDateTime.desc())
+                .orderBy(yjTodo.completedYn.asc(), yjTodo.updateDateTime.desc())
                 .fetch();
     }
 
