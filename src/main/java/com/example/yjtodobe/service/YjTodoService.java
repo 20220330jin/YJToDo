@@ -15,6 +15,8 @@ public interface YjTodoService {
     */
     YjTodoDto.listAll list();
 
+    List<YjTodoDto.completedList> completedList();
+
     void deleteTodo(YjTodoDto.todoDeleteParam param);
 
     void checkTodo(YjTodoDto.todoCheckParam param);

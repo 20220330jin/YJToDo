@@ -26,6 +26,11 @@ public class YjTodoRestController {
         return yjTodoService.list();
     }
 
+    @GetMapping("/completedList")
+    public List<YjTodoDto.completedList> completedList(){
+        return yjTodoService.completedList();
+    }
+
      @PutMapping("/delete")
     public void delete(@RequestBody YjTodoDto.todoDeleteParam param){
         yjTodoService.deleteTodo(param);
@@ -40,5 +45,6 @@ public class YjTodoRestController {
     public void edit(@RequestBody YjTodoDto.todoEditParam param){
         yjTodoService.editTodo(param);
     }
+
     
 }

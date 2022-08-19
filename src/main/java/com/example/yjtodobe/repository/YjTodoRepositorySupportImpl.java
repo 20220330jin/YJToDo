@@ -67,4 +67,29 @@ public class YjTodoRepositorySupportImpl extends QuerydslRepositorySupport imple
             
         
     }
+
+    @Override
+    public List<YjTodoDto.completedList> completedList() {
+
+        QYjTodo yjTodo = QYjTodo.yjTodo;
+
+        final BooleanExpression isUseYn = yjTodo.useYn.eq('N');
+        final BooleanExpression isDelYn = yjTodo.delYn.eq('Y');
+        final BooleanExpression isCompleted = yjTodo.completedYn.eq('Y');
+
+        return jpaQueryFactory.select(Projections.constructor(YjTodoDto.completedList.class, 
+                                    yjTodo.id,
+                                    yjTodo.todoContent,
+                                    yjTodo.updateDateTime,
+                                    yjTodo.completedYn
+        )) 
+                                .from(yjTodo)
+                                .where(isUseYn
+                                    .and(isDelYn)
+                                    .and(isCompleted)
+                                )
+                                .orderBy(yjTodo.updateDateTime.desc())
+                                .fetch();
+    }
+    
 }

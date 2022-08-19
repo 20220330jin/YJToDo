@@ -11,5 +11,7 @@ public interface YjTodoRepositorySupport {
      * TODO 완료여부 조회
      */
     char checkTodo(Long todoId);
+
+    List<YjTodoDto.completedList> completedList();
     
 }

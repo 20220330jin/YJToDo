@@ -64,11 +64,37 @@ public class YjTodoDto {
         }
     }
 
+    // completed 된 todoItem List Read
+    @Getter
+    public static class completedList {
+        private Long id;
+
+        private String todoContent;
+
+        private LocalDateTime updateDateTime;
+
+        private Character completedYn;
+
+        public completedList(Long id,
+                    String todoContent,
+                    LocalDateTime updateDateTime,
+                    Character completedYn
+                    ){
+            this.id = id;
+            this.todoContent = todoContent;
+            this.updateDateTime = updateDateTime;
+            this.completedYn = completedYn;
+        }
+    }
+
+
+    // YjTodo delete
     @Getter
     public static class todoDeleteParam {
         private Long yjTodoId;
     }
 
+    // YjTodo completed하는 체크 기능
     @Getter
     @Setter
     public static class todoCheckParam {
@@ -76,10 +102,12 @@ public class YjTodoDto {
         // private char completedYn;
     }
 
+    // YjTodo edit
     @Getter
     public static class todoEditParam {
         private Long todoId;
 
         private String todoContent;
     }
+
 }

@@ -45,6 +45,13 @@ public class YjTodoServiceImpl implements YjTodoService {
 
         return listAll;
 	}
+
+    @Override
+    public List<YjTodoDto.completedList> completedList() {
+
+        return yjTodoRepositorySupport.completedList();
+    }
+
     @Override
     public void deleteTodo(YjTodoDto.todoDeleteParam param) {
         Long yjTodoId = param.getYjTodoId();
@@ -75,6 +82,5 @@ public class YjTodoServiceImpl implements YjTodoService {
         yjTodoRepositoryManager.editTodo(param);
     }
 
-    
 }
 
