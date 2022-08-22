@@ -2,6 +2,8 @@ package com.example.yjtodobe.model;
 
 import java.time.LocalDateTime;
 
+import com.example.yjtodobe.domain.MemberTypeEnum;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -70,5 +72,37 @@ public class MemberDto {
             // this.delYn = delYn;
             // this.useYn = useYn;
         }
+    }
+
+    @Getter
+    public static class detailRead {
+        private Long id;
+
+        private String name;
+
+        private String username;
+
+        private LocalDateTime createDateTime;
+
+        private Character useYn;
+
+        private Character delYn;
+
+        private MemberTypeEnum memberType;
+
+        public detailRead(Long id, String name, String username, LocalDateTime createDateTime, Character useYn, Character delYn, MemberTypeEnum memberType){
+            this.id = id;
+            this.name = name;
+            this.username = username;
+            this.createDateTime = createDateTime;
+            this.delYn = delYn;
+            this.useYn = useYn;
+            this.memberType = memberType;
+        }
+    }
+    @Getter
+    @Setter
+    public static class detailReadParam {
+        private Long detailParamsId;
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.example.yjtodobe.domain.QUser;
 import com.example.yjtodobe.domain.User;
 import com.example.yjtodobe.model.MemberDto;
+import com.example.yjtodobe.model.MemberDto.detailReadParam;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -44,6 +45,31 @@ public class MemberRepositorySupportImpl extends QuerydslRepositorySupport imple
                 .where(isDelYn
                         .and(isUseYn))
                 .fetch();
+    }
+
+
+
+    @Override
+    public MemberDto.detailRead detailRead(detailReadParam param) {
+        QUser user = QUser.user;
+
+        final BooleanExpression isUserId = user.id.eq(param.getDetailParamsId());
+
+        return jpaQueryFactory.select(Projections.constructor(MemberDto.detailRead.class,
+                                    user.id,
+                                    user.name,
+                                    user.username,
+                                    user.createDateTime,
+                                    user.delYn,
+                                    user.useYn,
+                                    user.memberType
+        
+        ))
+                                .from(user)
+                                .where(isUserId
+                                )
+        .fetchFirst();
+    
     }
     
 }

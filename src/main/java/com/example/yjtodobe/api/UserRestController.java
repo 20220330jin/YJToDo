@@ -47,4 +47,9 @@ public class UserRestController {
     public List<MemberDto.list> list(){
         return memberService.list();
     }
+
+    @GetMapping("/users/detail")
+    public MemberDto.detailRead detailRead(@ModelAttribute MemberDto.detailReadParam param) {
+        return memberService.detailRead(param);
+    }
 }

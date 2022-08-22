@@ -3,6 +3,7 @@ package com.example.yjtodobe.service;
 import com.example.yjtodobe.domain.MemberTypeEnum;
 import com.example.yjtodobe.domain.User;
 import com.example.yjtodobe.model.MemberDto;
+import com.example.yjtodobe.model.MemberDto.detailReadParam;
 import com.example.yjtodobe.repository.MemberRepository;
 import com.example.yjtodobe.repository.MemberRepositorySupport;
 
@@ -42,5 +43,11 @@ public class MemberServiceImpl implements MemberService {
     public List<MemberDto.list> list() {
         List<MemberDto.list> members = memberRepositorySupport.list();
         return members;
+    }
+
+
+    @Override
+    public MemberDto.detailRead detailRead(detailReadParam param) {
+        return memberRepositorySupport.detailRead(param);
     }
 }

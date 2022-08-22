@@ -16,4 +16,6 @@ public interface MemberService {
     // 유저정보 리스트 조회
 
     List<MemberDto.list> list();
+
+    MemberDto.detailRead detailRead(MemberDto.detailReadParam param);
 }

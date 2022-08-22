@@ -3,9 +3,10 @@ package com.example.yjtodobe.domain;
 import lombok.Getter;
 
 public enum YjTodoTypeEnum {
-    NONE(0, "NONE", "빈 데이터"),
-    VACATION(10, "VACATION", "휴가"),
-    PAYMENT(20, "PAYMENT", "청구");
+    STANDBY(0, "STANDBY", "대기"),
+    ONGOING(10, "ONGOING", "진행중"),
+    CHECKING(20, "CHECKING", "확인중"),
+    COMPLETE(30, "COMPLETE", "완료");
 
     private int code;
 
