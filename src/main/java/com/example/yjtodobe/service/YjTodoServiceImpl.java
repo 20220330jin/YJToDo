@@ -1,8 +1,10 @@
 package com.example.yjtodobe.service;
 
+import com.example.yjtodobe.domain.YjTodo;
 import com.example.yjtodobe.model.YjTodoDto;
 import com.example.yjtodobe.model.YjTodoDto.todoCheckParam;
 import com.example.yjtodobe.model.YjTodoDto.todoEditParam;
+import com.example.yjtodobe.model.YjTodoDto.todoReturnParam;
 import com.example.yjtodobe.repository.YjTodoRepositoryManager;
 import com.example.yjtodobe.repository.YjTodoRepositorySupport;
 import lombok.RequiredArgsConstructor;
@@ -80,6 +82,11 @@ public class YjTodoServiceImpl implements YjTodoService {
     @Override
     public void editTodo(todoEditParam param) {
         yjTodoRepositoryManager.editTodo(param);
+    }
+
+    @Override
+    public void returnTodo(todoReturnParam param) {
+        yjTodoRepositoryManager.returnTodo(param);
     }
 
 }

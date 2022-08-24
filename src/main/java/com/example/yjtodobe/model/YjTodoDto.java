@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.example.yjtodobe.domain.YjTodo;
+import com.example.yjtodobe.domain.YjTodoTypeEnum;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -44,23 +45,23 @@ public class YjTodoDto {
 
         private String todoContent;
 
-        // private LocalDateTime createDateTime;
-
         private LocalDateTime updateDateTime;
 
         private Character completedYn;
 
+        // private String yjTodoType;
+
         public list(Long id,
                     String todoContent,
-                    // LocalDateTime createDateTime,
                     LocalDateTime updateDateTime,
                     Character completedYn
+                    // YjTodoTypeEnum yjTodoType
                     ){
             this.id = id;
             this.todoContent = todoContent;
-            // this.createDateTime = createDateTime;
             this.updateDateTime = updateDateTime;
             this.completedYn = completedYn;
+            // this.yjTodoType = yjTodoType.getDescription();
         }
     }
 
@@ -108,6 +109,11 @@ public class YjTodoDto {
         private Long todoId;
 
         private String todoContent;
+    }
+
+    @Getter
+    public static class todoReturnParam {
+        private Long yjTodoId;
     }
 
 }

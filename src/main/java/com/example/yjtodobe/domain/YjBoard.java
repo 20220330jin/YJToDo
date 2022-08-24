@@ -28,6 +28,8 @@ public class YjBoard extends BaseEntity{
 
     public String author;
 
+    public Long viewsCount;
+
     public YjBoard(YjBoardDto.createParam createParam){
         this.title = createParam.getTitle();
         this.content = createParam.getContent();

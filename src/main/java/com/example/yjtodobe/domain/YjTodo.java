@@ -29,7 +29,7 @@ public class YjTodo extends BaseEntity {
     public String todoContent;
 
     @Enumerated(EnumType.STRING)
-    private YjTodoTypeEnum YjTodoType;
+    private YjTodoTypeEnum yjTodoType;
 
     @Column(nullable = false)
     @ColumnDefault("'N'")

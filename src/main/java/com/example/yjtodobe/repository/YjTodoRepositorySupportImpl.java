@@ -31,16 +31,19 @@ public class YjTodoRepositorySupportImpl extends QuerydslRepositorySupport imple
         // flag 조건
         final BooleanExpression isUseYn = yjTodo.useYn.eq('Y');
         final BooleanExpression isDelYn = yjTodo.delYn.eq('N');
+        final BooleanExpression isCompletedYn = yjTodo.completedYn.eq('N');
 
         return jpaQueryFactory.select(Projections.constructor(YjTodoDto.list.class,
                 yjTodo.id,
                 yjTodo.todoContent,
                 yjTodo.updateDateTime,
                 yjTodo.completedYn
+                // yjTodo.yjTodoType
                 )).from(yjTodo)
                 .where(isDelYn
                         .and(isUseYn)
                 )
+                // .where(isCompletedYn)
                 .orderBy(yjTodo.completedYn.asc(), yjTodo.updateDateTime.desc())
                 .fetch();
     }

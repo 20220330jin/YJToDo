@@ -22,4 +22,6 @@ public interface YjTodoService {
     void checkTodo(YjTodoDto.todoCheckParam param);
 
     void editTodo(YjTodoDto.todoEditParam param);
+    
+    void returnTodo(YjTodoDto.todoReturnParam param);
 }

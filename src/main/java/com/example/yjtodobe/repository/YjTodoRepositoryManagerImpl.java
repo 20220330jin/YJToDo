@@ -2,9 +2,11 @@ package com.example.yjtodobe.repository;
 
 import com.example.yjtodobe.domain.QYjTodo;
 import com.example.yjtodobe.domain.YjTodo;
+import com.example.yjtodobe.domain.YjTodoTypeEnum;
 import com.example.yjtodobe.model.YjTodoDto;
 import com.example.yjtodobe.model.YjTodoDto.todoCheckParam;
 import com.example.yjtodobe.model.YjTodoDto.todoDeleteParam;
+import com.example.yjtodobe.model.YjTodoDto.todoReturnParam;
 import com.example.yjtodobe.service.YjTodoServiceImpl;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -63,6 +65,7 @@ public class YjTodoRepositoryManagerImpl extends QuerydslRepositorySupport imple
         jpaQueryFactory.update(yjTodo)
                 .set(yjTodo.updateDateTime, LocalDateTime.now() )
                 .set(yjTodo.completedYn, completedYn)
+                .set(yjTodo.yjTodoType, YjTodoTypeEnum.CHECKING)
                 .where(isYjTodoId)
                 .execute();
     }
@@ -78,6 +81,23 @@ public class YjTodoRepositoryManagerImpl extends QuerydslRepositorySupport imple
        jpaQueryFactory.update(yjTodo)
                .set(yjTodo.updateDateTime, LocalDateTime.now())
                .set(yjTodo.todoContent, param.getTodoContent())
+               .where(isYjTodoId)
+               .execute();
+
+
+    }
+
+    @Override
+    public void returnTodo(YjTodoDto.todoReturnParam param) {
+       QYjTodo yjTodo = QYjTodo.yjTodo;
+       
+       final BooleanExpression isYjTodoId = yjTodo.id.eq(param.getYjTodoId());
+
+       jpaQueryFactory.update(yjTodo)
+               .set(yjTodo.updateDateTime, LocalDateTime.now())
+               .set(yjTodo.completedYn, 'N')
+               .set(yjTodo.delYn, 'N')
+               .set(yjTodo.useYn, 'Y')
                .where(isYjTodoId)
                .execute();
 

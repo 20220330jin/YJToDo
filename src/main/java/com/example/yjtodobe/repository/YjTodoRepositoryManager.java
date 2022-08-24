@@ -11,4 +11,6 @@ public interface YjTodoRepositoryManager {
     void checkTodo(Long todoId, char completedYn);  
 
     void editTodo(YjTodoDto.todoEditParam param);
+
+    void returnTodo(YjTodoDto.todoReturnParam param);
 }
