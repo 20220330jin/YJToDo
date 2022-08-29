@@ -32,6 +32,7 @@ public class YjTodoServiceImpl implements YjTodoService {
 		List<YjTodoDto.list> todoList = yjTodoRepositorySupport.list();
         YjTodoDto.listAll listAll = new YjTodoDto.listAll();
 
+        // int totalCount = ?
         int totalCount = todoList.size();
 
         int checkedCount = 0;

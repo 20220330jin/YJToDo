@@ -37,6 +37,7 @@ public class YjTodo extends BaseEntity {
    
     public YjTodo(YjTodoDto.createParam createParam){
         this.todoContent = createParam.getTodoContent();
+        this.yjTodoType = YjTodoTypeEnum.STANDBY;
     }
 
 

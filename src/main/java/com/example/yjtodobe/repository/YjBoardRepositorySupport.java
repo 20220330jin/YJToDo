@@ -11,6 +11,6 @@ public interface YjBoardRepositorySupport {
 
    YjBoardDto.detailRead detailRead(YjBoardDto.detailReadParam param);
 
-
+   
    
 }

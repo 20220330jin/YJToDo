@@ -33,6 +33,7 @@ public class MemberServiceImpl implements MemberService {
                 .username(param.getUsername())
                 .name(param.getName())
                 .password(passwordEncoder.encode(param.getPassword()))
+                .email(param.getEmail())
                 .memberType(MemberTypeEnum.NORMAL)
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build()).getId();

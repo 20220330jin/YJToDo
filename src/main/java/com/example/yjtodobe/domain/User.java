@@ -34,6 +34,8 @@ public class User extends BaseEntity implements UserDetails {
 
     private Boolean enabled;
 
+    private String email;
+
     @Enumerated(EnumType.STRING)
     private MemberTypeEnum memberType;
 

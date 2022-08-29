@@ -88,16 +88,19 @@ public class MemberDto {
 
         private Character delYn;
 
-        private MemberTypeEnum memberType;
+        private String memberType;
 
-        public detailRead(Long id, String name, String username, LocalDateTime createDateTime, Character useYn, Character delYn, MemberTypeEnum memberType){
+        private String email;
+
+        public detailRead(Long id, String name, String username, LocalDateTime createDateTime, Character useYn, Character delYn, MemberTypeEnum memberType, String email){
             this.id = id;
             this.name = name;
             this.username = username;
             this.createDateTime = createDateTime;
             this.delYn = delYn;
             this.useYn = useYn;
-            this.memberType = memberType;
+            this.memberType = memberType.getDescription();
+            this.email = email;
         }
     }
     @Getter

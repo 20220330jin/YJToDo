@@ -66,4 +66,15 @@ public class YjBoardServiceImpl implements YjBoardService{
         yjBoardRepositoryManager.boardUpdate(param);
     }
 
+    // public void boardCount(boardCountParam param) {
+    //     Long boardId = param.getId();
+    //     Integer count = yjBoardRepositorySupport.findViewCountByBoardId(boardId);
+    //     count = count+1;
+
+    //     yjBoardRepositoryManager.boardCount(boardId, count);
+
+    //     update()
+    //     set(viewCount, count)
+    // }
+
 }

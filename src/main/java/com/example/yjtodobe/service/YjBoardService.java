@@ -17,4 +17,6 @@ public interface YjBoardService {
 
     void boardUpdate(YjBoardDto.boardUpdateParam param);
 
+    // void boardCount(YjBoardDto.boardCountParam param);
+
 }

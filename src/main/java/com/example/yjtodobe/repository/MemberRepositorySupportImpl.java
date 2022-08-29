@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
+import com.example.yjtodobe.domain.MemberTypeEnum;
 import com.example.yjtodobe.domain.QUser;
 import com.example.yjtodobe.domain.User;
 import com.example.yjtodobe.model.MemberDto;
@@ -62,8 +63,8 @@ public class MemberRepositorySupportImpl extends QuerydslRepositorySupport imple
                                     user.createDateTime,
                                     user.delYn,
                                     user.useYn,
-                                    user.memberType
-        
+                                    user.memberType,
+                                    user.email
         ))
                                 .from(user)
                                 .where(isUserId
