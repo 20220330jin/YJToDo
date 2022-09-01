@@ -9,4 +9,9 @@ public interface YjBoardRepositoryManager {
     void boardDelete(YjBoardDto.boardDeleteParam deleteParam);
     
     void boardUpdate(YjBoardDto.boardUpdateParam updateParam);
+
+    // void boardAddCount(YjBoardDto.boardAddCountParam param);
+
+    void boardAddCount(Long boardId, Long count);
+
 }

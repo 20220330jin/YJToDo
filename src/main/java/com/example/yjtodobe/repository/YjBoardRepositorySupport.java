@@ -11,6 +11,8 @@ public interface YjBoardRepositorySupport {
 
    YjBoardDto.detailRead detailRead(YjBoardDto.detailReadParam param);
 
-   
+   // Long boardCountRead(Long boardId);
+
+   Long boardCountRead(YjBoardDto.boardAddCountParam param);
    
 }

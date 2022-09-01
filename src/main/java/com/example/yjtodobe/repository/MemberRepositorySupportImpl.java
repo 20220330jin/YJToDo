@@ -72,5 +72,36 @@ public class MemberRepositorySupportImpl extends QuerydslRepositorySupport imple
         .fetchFirst();
     
     }
+
+
+
+    @Override
+    public List<MemberDto.list> search(String keyword, String type) {
+        QUser user = QUser.user;
+
+        final BooleanExpression isUseYn = user.useYn.eq('Y');
+        final BooleanExpression isDelYn = user.delYn.eq('N');
+
+        BooleanExpression isName = null;
+        BooleanExpression isUserName = null;
+
+        if(type.equals("NAME")){
+            isName = user.name.contains(keyword);
+        }else if(type.equals("UserName")){
+            isUserName = user.username.contains(keyword);
+        }
+
+        return jpaQueryFactory.select(Projections.constructor(MemberDto.list.class,
+                        user.id,
+                        user.name,
+                        user.username,
+                        user.createDateTime
+                )).from(user)
+                .where(isDelYn
+                        .and(isUseYn)
+                        .and(isName)
+                        .and(isUserName))
+                .fetch();
+    }
     
 }

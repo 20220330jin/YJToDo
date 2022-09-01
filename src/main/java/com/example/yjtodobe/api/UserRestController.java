@@ -52,4 +52,9 @@ public class UserRestController {
     public MemberDto.detailRead detailRead(@ModelAttribute MemberDto.detailReadParam param) {
         return memberService.detailRead(param);
     }
+
+    @GetMapping("/users/search")
+    public List<MemberDto.list> search(@ModelAttribute MemberDto.searchParam param) {
+        return memberService.search(param);
+    }
 }

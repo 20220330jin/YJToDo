@@ -40,7 +40,8 @@ public class YjBoardRepositorySupportImpl extends QuerydslRepositorySupport impl
                                     yjBoard.title,
                                     yjBoard.content,
                                     yjBoard.author,
-                                    yjBoard.createDateTime
+                                    yjBoard.createDateTime,
+                                    yjBoard.viewsCount
         )) 
                                 .from(yjBoard)
                                 .where(isUseYn
@@ -71,7 +72,8 @@ public class YjBoardRepositorySupportImpl extends QuerydslRepositorySupport impl
                                     yjBoard.title,
                                     yjBoard.content,
                                     yjBoard.author,
-                                    yjBoard.createDateTime
+                                    yjBoard.createDateTime,
+                                    yjBoard.viewsCount
         )) 
                                 .from(yjBoard)
                                 .where(isUseYn
@@ -100,7 +102,8 @@ public class YjBoardRepositorySupportImpl extends QuerydslRepositorySupport impl
                                     yjBoard.content,
                                     yjBoard.author,                                    
                                     yjBoard.createDateTime,
-                                    yjBoard.id
+                                    yjBoard.id,
+                                    yjBoard.viewsCount
                                    
         
         ))
@@ -111,5 +114,37 @@ public class YjBoardRepositorySupportImpl extends QuerydslRepositorySupport impl
                                 )
         .fetchFirst();
     }
+
+    @Override
+    public Long boardCountRead(YjBoardDto.boardAddCountParam param) {
+        QYjBoard yjBoard = QYjBoard.yjBoard;
+
+        final BooleanExpression isYjBoardId = yjBoard.id.eq(param.getDetailParamsId());
+
+        final BooleanExpression isUseYn = yjBoard.useYn.eq('Y');
+        final BooleanExpression isDelYn = yjBoard.delYn.eq('N');
+
+        return jpaQueryFactory.select(yjBoard.viewsCount)
+            .from(yjBoard)
+            .where(isYjBoardId
+            .and(isDelYn)
+            .and(isUseYn)
+            )
+            .fetchFirst();
+    }
+
+    // count read
+    // @Override
+    // public YjBoardDto.boardCountRead boardCountRead(YjBoardDto.boardCountParam param){
+    //     QYjBoard yjBoard = QYjBoard.yjBoard;
+
+        
+    //     // id -> getId()
+    //     // detailParamsId -> 
+    //     final BooleanExpression isYjboardId = yjBoard.id.eq(param.getDetailParamsId());
+
+   
+
+    // }
 
 }

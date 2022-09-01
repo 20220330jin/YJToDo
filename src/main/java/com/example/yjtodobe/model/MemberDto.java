@@ -74,6 +74,38 @@ public class MemberDto {
         }
     }
 
+    @Getter 
+    public static class search {
+        private long id;
+
+        private String name;
+
+        private String username;
+
+        private LocalDateTime createDateTime;
+
+        public search(long id, String name, String username, LocalDateTime createDateTime){
+            this.id = id;
+            this.name = name;
+            this.username = username;
+            this.createDateTime = createDateTime;
+        }
+    }
+
+    @Getter
+    @Setter
+    public static class searchParam {
+
+        // 검색어
+        private String searchKeyword;
+
+        // 검색타입 : name(가입자이름) / username(가입자가 만든 아이디)
+        private String searchType;
+        
+    }
+
+
+
     @Getter
     public static class detailRead {
         private Long id;

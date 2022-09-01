@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.example.yjtodobe.model.YjBoardDto;
+import com.example.yjtodobe.model.YjBoardDto.boardAddCountParam;
 import com.example.yjtodobe.model.YjBoardDto.boardDeleteParam;
 import com.example.yjtodobe.model.YjBoardDto.boardUpdateParam;
 import com.example.yjtodobe.repository.YjBoardRepositoryManager;
@@ -65,16 +66,17 @@ public class YjBoardServiceImpl implements YjBoardService{
     public void boardUpdate(boardUpdateParam param) {
         yjBoardRepositoryManager.boardUpdate(param);
     }
+    
+    @Override
+    public void boardAddCount(boardAddCountParam param) {
+        Long boardId = param.getDetailParamsId();
+        Long count = yjBoardRepositorySupport.boardCountRead(param);
+        count = count++;
 
-    // public void boardCount(boardCountParam param) {
-    //     Long boardId = param.getId();
-    //     Integer count = yjBoardRepositorySupport.findViewCountByBoardId(boardId);
-    //     count = count+1;
+        yjBoardRepositoryManager.boardAddCount(boardId, count);
 
-    //     yjBoardRepositoryManager.boardCount(boardId, count);
-
-    //     update()
-    //     set(viewCount, count)
-    // }
+        // update()
+        // set(viewCount, count)
+    }
 
 }

@@ -36,12 +36,15 @@ public class YjBoardDto {
 
         private LocalDateTime createDateTime;
 
-        public read(long id, String title, String content, String author, LocalDateTime createDateTime){
+        private long viewsCount;
+
+        public read(long id, String title, String content, String author, LocalDateTime createDateTime, long viewsCount){
             this.id = id;
             this.title = title;
             this.content = content;
             this.author = author;
             this.createDateTime = createDateTime;
+            this.viewsCount = viewsCount;
         }
     }
 
@@ -69,14 +72,15 @@ public class YjBoardDto {
 
         private LocalDateTime createDateTime;
 
-        // private String search;
+        private long viewsCount;
 
-        public search(long id, String title, String content, String author, LocalDateTime createDateTime, String search){
+        public search(long id, String title, String content, String author, LocalDateTime createDateTime, long viewsCount){
             this.id = id;
             this.title = title;
             this.content = content;
             this.author = author;
             this.createDateTime = createDateTime;
+            this.viewsCount = viewsCount;
             // this.search = search;
         }
     }
@@ -92,16 +96,29 @@ public class YjBoardDto {
         private LocalDateTime createDateTime;
 
         private long id;
+
+        private long viewsCount;
         
 
-        public detailRead(String title, String content, String author, LocalDateTime createDateTime, long id) {
+        public detailRead(String title, String content, String author, LocalDateTime createDateTime, long id, long viewsCount) {
             this.title = title;
             this.content = content;
             this.author = author;
             this.createDateTime = createDateTime;
             this.id = id;
+            this.viewsCount = viewsCount;
             
         }
+    }
+    @Getter
+    public static class countcount {
+        private Long viewsCount;
+
+    }
+    @Getter
+    @Setter
+    public static class boardAddCountParam {
+        private long detailParamsId;
     }
 
     @Getter
@@ -124,4 +141,6 @@ public class YjBoardDto {
         private String content;
         private String author;
     }
+
+    
 }

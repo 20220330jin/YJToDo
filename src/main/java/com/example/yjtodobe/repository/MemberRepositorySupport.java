@@ -7,5 +7,7 @@ import com.example.yjtodobe.model.MemberDto;
 public interface MemberRepositorySupport {
     List<MemberDto.list> list();
 
+    List<MemberDto.list> search(String keyword, String type);
+
     MemberDto.detailRead detailRead(MemberDto.detailReadParam param);
 }

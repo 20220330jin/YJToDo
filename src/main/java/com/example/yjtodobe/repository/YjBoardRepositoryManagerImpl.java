@@ -65,4 +65,18 @@ public class YjBoardRepositoryManagerImpl extends QuerydslRepositorySupport impl
                 .where(isYjBoardId)
                 .execute();
     }
+
+    @Override
+    public void boardAddCount(Long boardId, Long count) {
+        QYjBoard yjBoard = QYjBoard.yjBoard;
+
+        final  BooleanExpression isYjBoardId = yjBoard.id.eq(boardId);
+
+        jpaQueryFactory.update(yjBoard)
+                .set(yjBoard.viewsCount, count)
+                .where(isYjBoardId)
+                .execute();
+        
+    }
+
 }
