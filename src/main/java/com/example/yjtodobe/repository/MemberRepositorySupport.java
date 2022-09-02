@@ -10,4 +10,6 @@ public interface MemberRepositorySupport {
     List<MemberDto.list> search(String keyword, String type);
 
     MemberDto.detailRead detailRead(MemberDto.detailReadParam param);
+
+    MemberDto.signupCheck signupCheck(MemberDto.signupCheckParam param);
 }

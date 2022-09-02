@@ -57,4 +57,9 @@ public class UserRestController {
     public List<MemberDto.list> search(@ModelAttribute MemberDto.searchParam param) {
         return memberService.search(param);
     }
+    // signup 시 중복 아이디 체크
+    @GetMapping("/signup/check")
+    public MemberDto.signupCheck signupCheck(@ModelAttribute MemberDto.signupCheckParam param) {
+        return memberService.signupCheck(param);
+    }
 }

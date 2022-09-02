@@ -1,10 +1,12 @@
 package com.example.yjtodobe.service;
 
 import com.example.yjtodobe.domain.MemberTypeEnum;
+import com.example.yjtodobe.domain.QUser;
 import com.example.yjtodobe.domain.User;
 import com.example.yjtodobe.model.MemberDto;
 import com.example.yjtodobe.model.MemberDto.detailReadParam;
 import com.example.yjtodobe.model.MemberDto.searchParam;
+import com.example.yjtodobe.model.MemberDto.signupCheckParam;
 import com.example.yjtodobe.repository.MemberRepository;
 import com.example.yjtodobe.repository.MemberRepositorySupport;
 
@@ -60,5 +62,14 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberDto.detailRead detailRead(detailReadParam param) {
         return memberRepositorySupport.detailRead(param);
+    }
+    @Override
+    public MemberDto.signupCheck signupCheck(signupCheckParam param) {
+
+        // if(param.getSignupCheckParam() == null){
+            
+        // }
+        return memberRepositorySupport.signupCheck(param);
+    
     }
 }

@@ -140,4 +140,21 @@ public class MemberDto {
     public static class detailReadParam {
         private Long detailParamsId;
     }
+
+    @Getter
+    public static class signupCheck {
+        private String username;
+
+        private String name;
+
+        public signupCheck(String username, String name){
+            this.username = username;
+            this.name = name;
+        }
+    }
+    @Getter
+    @Setter
+    public static class signupCheckParam {
+        private String signupCheckParam;
+    }
 }

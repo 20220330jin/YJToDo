@@ -13,6 +13,7 @@ import com.example.yjtodobe.domain.QUser;
 import com.example.yjtodobe.domain.User;
 import com.example.yjtodobe.model.MemberDto;
 import com.example.yjtodobe.model.MemberDto.detailReadParam;
+import com.example.yjtodobe.model.MemberDto.signupCheckParam;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -73,7 +74,20 @@ public class MemberRepositorySupportImpl extends QuerydslRepositorySupport imple
     
     }
 
+     @Override
+    public MemberDto.signupCheck signupCheck(signupCheckParam param) {
+        QUser user = QUser.user;
 
+        final BooleanExpression isUserName = user.username.eq(param.getSignupCheckParam());
+
+        return jpaQueryFactory.select(Projections.constructor(MemberDto.signupCheck.class,
+                                    user.username,
+                                    user.name
+        ))
+                                .from(user)
+                                .where(isUserName)
+        .fetchFirst();     
+    }
 
     @Override
     public List<MemberDto.list> search(String keyword, String type) {

@@ -20,4 +20,6 @@ public interface MemberService {
     List<MemberDto.list> search(MemberDto.searchParam param);
 
     MemberDto.detailRead detailRead(MemberDto.detailReadParam param);
+
+    MemberDto.signupCheck signupCheck(MemberDto.signupCheckParam param);
 }
