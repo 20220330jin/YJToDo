@@ -71,7 +71,7 @@ public class YjBoardServiceImpl implements YjBoardService{
     public void boardAddCount(boardAddCountParam param) {
         Long boardId = param.getDetailParamsId();
         Long count = yjBoardRepositorySupport.boardCountRead(param);
-        count = count++;
+        count = count + 1;
 
         yjBoardRepositoryManager.boardAddCount(boardId, count);
 
