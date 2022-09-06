@@ -119,7 +119,7 @@ public class YjBoardRepositorySupportImpl extends QuerydslRepositorySupport impl
     public Long boardCountRead(YjBoardDto.boardAddCountParam param) {
         QYjBoard yjBoard = QYjBoard.yjBoard;
 
-        final BooleanExpression isYjBoardId = yjBoard.id.eq(param.getDetailParamsId());
+        final BooleanExpression isYjBoardId = yjBoard.id.eq(param.getDetailParamId());
 
         final BooleanExpression isUseYn = yjBoard.useYn.eq('Y');
         final BooleanExpression isDelYn = yjBoard.delYn.eq('N');

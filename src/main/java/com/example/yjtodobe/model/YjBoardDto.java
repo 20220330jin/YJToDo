@@ -110,15 +110,11 @@ public class YjBoardDto {
             
         }
     }
-    @Getter
-    public static class countcount {
-        private Long viewsCount;
 
-    }
     @Getter
     @Setter
     public static class boardAddCountParam {
-        private long detailParamsId;
+        private long detailParamId;
     }
 
     @Getter

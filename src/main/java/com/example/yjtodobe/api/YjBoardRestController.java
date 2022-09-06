@@ -59,7 +59,7 @@ public class YjBoardRestController {
     }
 
     // viewsCount ++
-    @PutMapping("/addCount")
+     @PutMapping("/addCount")
     public void addCount(@RequestBody YjBoardDto.boardAddCountParam param){
         yjBoardService.boardAddCount(param);
     }

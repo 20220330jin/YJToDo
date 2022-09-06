@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.hibernate.query.criteria.internal.predicate.IsEmptyPredicate;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
@@ -78,7 +79,7 @@ public class MemberRepositorySupportImpl extends QuerydslRepositorySupport imple
     public MemberDto.signupCheck signupCheck(signupCheckParam param) {
         QUser user = QUser.user;
 
-        final BooleanExpression isUserName = user.username.eq(param.getSignupCheckParam());
+        BooleanExpression isUserName = user.username.eq(param.getSignupCheckParam());
 
         return jpaQueryFactory.select(Projections.constructor(MemberDto.signupCheck.class,
                                     user.username,
