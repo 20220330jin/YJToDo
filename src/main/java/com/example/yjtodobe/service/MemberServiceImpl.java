@@ -5,9 +5,12 @@ import com.example.yjtodobe.domain.QUser;
 import com.example.yjtodobe.domain.User;
 import com.example.yjtodobe.model.MemberDto;
 import com.example.yjtodobe.model.MemberDto.detailReadParam;
+import com.example.yjtodobe.model.MemberDto.idFindParam;
+import com.example.yjtodobe.model.MemberDto.pwFindParam;
 import com.example.yjtodobe.model.MemberDto.searchParam;
 import com.example.yjtodobe.model.MemberDto.signupCheckParam;
 import com.example.yjtodobe.repository.MemberRepository;
+import com.example.yjtodobe.repository.MemberRepositoryManager;
 import com.example.yjtodobe.repository.MemberRepositorySupport;
 
 import lombok.RequiredArgsConstructor;
@@ -25,10 +28,11 @@ public class MemberServiceImpl implements MemberService {
 
     final MemberRepository memberRepository;
 
+    final MemberRepositoryManager memberRepositoryManager;
+
     final PasswordEncoder passwordEncoder;
 
     final MemberRepositorySupport memberRepositorySupport;
-
 
     @Override
     public Long signup(MemberDto.signupParam param) {
@@ -41,7 +45,6 @@ public class MemberServiceImpl implements MemberService {
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build()).getId();
     }
-
 
     @Override
     public List<MemberDto.list> list() {
@@ -71,5 +74,15 @@ public class MemberServiceImpl implements MemberService {
         // }
         return memberRepositorySupport.signupCheck(param);
     
+    }
+
+    @Override
+    public MemberDto.idFind idFind(idFindParam param) {
+        return memberRepositorySupport.idFind(param);
+    }
+
+    @Override
+    public void pwFind(pwFindParam param) {
+        memberRepositoryManager.pwFind(param);
     }
 }

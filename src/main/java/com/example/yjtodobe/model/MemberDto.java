@@ -91,6 +91,24 @@ public class MemberDto {
             this.createDateTime = createDateTime;
         }
     }
+    
+    @Getter 
+    public static class idFind {
+        private String name;
+
+        private String username;
+
+        private LocalDateTime createDateTime;
+
+        private String email;
+
+        public idFind(String name, String username, LocalDateTime createDateTime, String email){
+            this.name = name;
+            this.username = username;
+            this.createDateTime = createDateTime;
+            this.email = email;
+        }
+    }
 
     @Getter
     @Setter
@@ -103,8 +121,6 @@ public class MemberDto {
         private String searchType;
         
     }
-
-
 
     @Getter
     public static class detailRead {
@@ -157,4 +173,19 @@ public class MemberDto {
     public static class signupCheckParam {
         private String signupCheckParam;
     }
+    @Getter
+    @Setter
+    public static class idFindParam {
+        private String name;
+        private String email;
+    }
+    @Getter
+    @Setter
+    public static class pwFindParam {
+        private String name;
+        private String username;
+    }
+  
+   
+
 }

@@ -12,4 +12,6 @@ public interface MemberRepositorySupport {
     MemberDto.detailRead detailRead(MemberDto.detailReadParam param);
 
     MemberDto.signupCheck signupCheck(MemberDto.signupCheckParam param);
+
+    MemberDto.idFind idFind(MemberDto.idFindParam param);
 }

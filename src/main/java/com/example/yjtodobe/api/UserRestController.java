@@ -62,4 +62,12 @@ public class UserRestController {
     public MemberDto.signupCheck signupCheck(@ModelAttribute MemberDto.signupCheckParam param) {
         return memberService.signupCheck(param);
     }
+    @GetMapping("/login/idFind")
+    public MemberDto.idFind idFind(@ModelAttribute MemberDto.idFindParam param) {
+        return memberService.idFind(param);
+    }
+    @PutMapping("/login/pwFind")
+    public void pwFind(@RequestBody MemberDto.pwFindParam param) {
+        memberService.pwFind(param);
+    }
 }

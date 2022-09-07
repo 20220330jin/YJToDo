@@ -22,4 +22,9 @@ public interface MemberService {
     MemberDto.detailRead detailRead(MemberDto.detailReadParam param);
 
     MemberDto.signupCheck signupCheck(MemberDto.signupCheckParam param);
+
+    MemberDto.idFind idFind(MemberDto.idFindParam param);
+
+    // 비밀번호 찾기 -> 비밀번호 초기화
+    void pwFind(MemberDto.pwFindParam param);
 }

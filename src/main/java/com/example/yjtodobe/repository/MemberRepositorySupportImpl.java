@@ -14,6 +14,7 @@ import com.example.yjtodobe.domain.QUser;
 import com.example.yjtodobe.domain.User;
 import com.example.yjtodobe.model.MemberDto;
 import com.example.yjtodobe.model.MemberDto.detailReadParam;
+import com.example.yjtodobe.model.MemberDto.idFindParam;
 import com.example.yjtodobe.model.MemberDto.signupCheckParam;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -75,6 +76,26 @@ public class MemberRepositorySupportImpl extends QuerydslRepositorySupport imple
     
     }
 
+    @Override
+    public MemberDto.idFind idFind(idFindParam param) {
+        QUser user = QUser.user;
+
+        final BooleanExpression isName = user.name.eq(param.getName());
+        final BooleanExpression isEmail = user.email.eq(param.getEmail());
+
+        return jpaQueryFactory.select(Projections.constructor(MemberDto.idFind.class,
+                                    user.name,
+                                    user.username,
+                                    user.createDateTime,
+                                    user.email
+        ))
+                                .from(user)
+                                .where(isName
+                                .and(isEmail)
+                                )
+        .fetchFirst();
+    }
+
      @Override
     public MemberDto.signupCheck signupCheck(signupCheckParam param) {
         QUser user = QUser.user;
@@ -118,5 +139,9 @@ public class MemberRepositorySupportImpl extends QuerydslRepositorySupport imple
                         .and(isUserName))
                 .fetch();
     }
+
+
+
+    
     
 }
