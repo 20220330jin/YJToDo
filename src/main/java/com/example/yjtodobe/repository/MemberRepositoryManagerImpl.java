@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import javax.persistence.EntityManager;
 
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.example.yjtodobe.domain.QUser;
@@ -17,6 +18,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 public class MemberRepositoryManagerImpl extends QuerydslRepositorySupport implements MemberRepositoryManager{
 
     final JPAQueryFactory jpaQueryFactory;
+    PasswordEncoder passwordEncoder;
 
     public MemberRepositoryManagerImpl(EntityManager entityManager){
         super(User.class);
@@ -26,17 +28,17 @@ public class MemberRepositoryManagerImpl extends QuerydslRepositorySupport imple
     }
     
     @Override
-    public void pwFind(MemberDto.pwFindParam param) {
+    public void pwFind(String isName, String isUserName, String password) {
         QUser user = QUser.user;
 
-        final BooleanExpression isName = user.name.eq(param.getName());
-        final BooleanExpression isUserName = user.username.eq(param.getUsername());
+        final BooleanExpression Name = user.name.eq(isName);
+        final BooleanExpression UserName = user.username.eq(isUserName);
 
         jpaQueryFactory.update(user)
-                .set(user.password, "1111")
+                .set(user.password, password)
                 .set(user.updateDateTime, LocalDateTime.now() )
-                .where(isName
-                .and(isUserName))
+                .where(Name
+                .and(UserName))
                 .execute();
     } 
     

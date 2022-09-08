@@ -37,8 +37,8 @@ public class YjTodoRepositorySupportImpl extends QuerydslRepositorySupport imple
                 yjTodo.id,
                 yjTodo.todoContent,
                 yjTodo.updateDateTime,
-                yjTodo.completedYn
-                // yjTodo.yjTodoType
+                yjTodo.completedYn,
+                yjTodo.yjTodoType
                 )).from(yjTodo)
                 .where(isDelYn
                         .and(isUseYn)

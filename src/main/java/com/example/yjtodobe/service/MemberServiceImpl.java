@@ -83,6 +83,11 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void pwFind(pwFindParam param) {
-        memberRepositoryManager.pwFind(param);
+        String isName = param.getName();
+        String isUserName = param.getUsername();
+        String password = passwordEncoder.encode("1111");
+        
+
+        memberRepositoryManager.pwFind(isName, isUserName, password);
     }
 }

@@ -49,19 +49,19 @@ public class YjTodoDto {
 
         private Character completedYn;
 
-        // private String yjTodoType;
+        private String yjTodoType;
 
         public list(Long id,
                     String todoContent,
                     LocalDateTime updateDateTime,
-                    Character completedYn
-                    // YjTodoTypeEnum yjTodoType
+                    Character completedYn,
+                    YjTodoTypeEnum yjTodoType
                     ){
             this.id = id;
             this.todoContent = todoContent;
             this.updateDateTime = updateDateTime;
             this.completedYn = completedYn;
-            // this.yjTodoType = yjTodoType.getDescription();
+            this.yjTodoType = yjTodoType.getDescription();
         }
     }
 

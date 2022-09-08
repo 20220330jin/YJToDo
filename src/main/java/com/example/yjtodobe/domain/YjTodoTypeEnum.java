@@ -7,7 +7,8 @@ public enum YjTodoTypeEnum {
     STANDBY(0, "WAITING", "대기중"),
     ONGOING(10, "ONGOING", "진행중"),
     CHECKING(20, "CHECKING", "확인중"),
-    COMPLETE(30, "COMPLETE", "완료");
+    COMPLETE(30, "COMPLETE", "완료"),
+    DELETE(40,"DELETE","삭제");
 
     private int code;
 

@@ -98,6 +98,7 @@ public class YjTodoRepositoryManagerImpl extends QuerydslRepositorySupport imple
                .set(yjTodo.completedYn, 'N')
                .set(yjTodo.delYn, 'N')
                .set(yjTodo.useYn, 'Y')
+               .set(yjTodo.yjTodoType, YjTodoTypeEnum.STANDBY)
                .where(isYjTodoId)
                .execute();
 
