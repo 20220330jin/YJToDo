@@ -43,7 +43,7 @@ public class YjTodoRepositoryManagerImpl extends QuerydslRepositorySupport imple
     }
 
     @Override
-    public void deleteYjTodo(Long yjTodoId) {
+    public void completeYjTodo(Long yjTodoId) {
         QYjTodo yjTodo = QYjTodo.yjTodo;
 
         final BooleanExpression isYjTodoId = yjTodo.id.eq(yjTodoId);
@@ -52,8 +52,25 @@ public class YjTodoRepositoryManagerImpl extends QuerydslRepositorySupport imple
                 .set(yjTodo.updateDateTime, LocalDateTime.now())
                 .set(yjTodo.useYn, 'N')
                 .set(yjTodo.delYn, 'Y')
+                .set(yjTodo.yjTodoType, YjTodoTypeEnum.COMPLETE)
                 .where(isYjTodoId)
                 .execute();
+    }
+    
+    @Override
+    public void deleteTodo(Long yjTodoId) {
+        QYjTodo yjTodo = QYjTodo.yjTodo;
+
+        final BooleanExpression isYjTodoId = yjTodo.id.eq(yjTodoId);
+
+        update(yjTodo)
+                .set(yjTodo.updateDateTime, LocalDateTime.now())
+                .set(yjTodo.useYn, 'N')
+                .set(yjTodo.delYn, 'Y')
+                .set(yjTodo.yjTodoType, YjTodoTypeEnum.DELETE)
+                .where(isYjTodoId)
+                .execute();
+        
     }
 
     @Override
@@ -104,6 +121,7 @@ public class YjTodoRepositoryManagerImpl extends QuerydslRepositorySupport imple
 
 
     }
+
 
     
 }

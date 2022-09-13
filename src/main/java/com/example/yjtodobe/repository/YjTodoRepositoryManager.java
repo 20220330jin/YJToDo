@@ -6,7 +6,9 @@ public interface YjTodoRepositoryManager {
     
     YjTodoDto.create create(YjTodoDto.createParam createParam);
 
-    void deleteYjTodo(Long yjTodoId);
+    void completeYjTodo(Long yjTodoId);
+
+    void deleteTodo(Long yjTodoId);
      
     void checkTodo(Long todoId, char completedYn);  
 

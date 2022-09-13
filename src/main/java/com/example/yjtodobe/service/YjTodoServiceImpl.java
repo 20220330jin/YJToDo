@@ -3,6 +3,7 @@ package com.example.yjtodobe.service;
 import com.example.yjtodobe.domain.YjTodo;
 import com.example.yjtodobe.model.YjTodoDto;
 import com.example.yjtodobe.model.YjTodoDto.todoCheckParam;
+import com.example.yjtodobe.model.YjTodoDto.todoDeleteParam;
 import com.example.yjtodobe.model.YjTodoDto.todoEditParam;
 import com.example.yjtodobe.model.YjTodoDto.todoReturnParam;
 import com.example.yjtodobe.repository.YjTodoRepositoryManager;
@@ -56,9 +57,16 @@ public class YjTodoServiceImpl implements YjTodoService {
     }
 
     @Override
-    public void deleteTodo(YjTodoDto.todoDeleteParam param) {
+    public void completeTodo(YjTodoDto.todoDeleteParam param) {
         Long yjTodoId = param.getYjTodoId();
-        yjTodoRepositoryManager.deleteYjTodo(yjTodoId);
+        yjTodoRepositoryManager.completeYjTodo(yjTodoId);
+    }
+    
+    @Override
+    public void todoDelete(todoDeleteParam param) {
+        Long yjTodoId = param.getYjTodoId();
+        yjTodoRepositoryManager.deleteTodo(yjTodoId);
+        
     }
 
     @Override
@@ -89,6 +97,7 @@ public class YjTodoServiceImpl implements YjTodoService {
     public void returnTodo(todoReturnParam param) {
         yjTodoRepositoryManager.returnTodo(param);
     }
+
 
 }
 

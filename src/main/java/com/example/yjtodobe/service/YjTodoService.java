@@ -17,7 +17,10 @@ public interface YjTodoService {
 
     List<YjTodoDto.completedList> completedList();
 
-    void deleteTodo(YjTodoDto.todoDeleteParam param);
+    void completeTodo(YjTodoDto.todoDeleteParam param);
+
+    // todo목록에서 잘못입력된 todo삭제
+    void todoDelete(YjTodoDto.todoDeleteParam param);
 
     void checkTodo(YjTodoDto.todoCheckParam param);
 

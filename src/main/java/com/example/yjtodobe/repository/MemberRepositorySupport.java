@@ -13,5 +13,5 @@ public interface MemberRepositorySupport {
 
     MemberDto.signupCheck signupCheck(MemberDto.signupCheckParam param);
 
-    MemberDto.idFind idFind(MemberDto.idFindParam param);
+    List<MemberDto.idFind> idFind(MemberDto.idFindParam param);
 }

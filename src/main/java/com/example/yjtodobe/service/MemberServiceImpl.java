@@ -77,7 +77,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberDto.idFind idFind(idFindParam param) {
+    public List<MemberDto.idFind> idFind(idFindParam param) {
         return memberRepositorySupport.idFind(param);
     }
 

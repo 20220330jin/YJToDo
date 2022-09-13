@@ -77,7 +77,7 @@ public class MemberRepositorySupportImpl extends QuerydslRepositorySupport imple
     }
 
     @Override
-    public MemberDto.idFind idFind(idFindParam param) {
+    public List<MemberDto.idFind> idFind(idFindParam param) {
         QUser user = QUser.user;
 
         final BooleanExpression isName = user.name.eq(param.getName());
@@ -93,7 +93,7 @@ public class MemberRepositorySupportImpl extends QuerydslRepositorySupport imple
                                 .where(isName
                                 .and(isEmail)
                                 )
-        .fetchFirst();
+        .fetch();
     }
 
      @Override

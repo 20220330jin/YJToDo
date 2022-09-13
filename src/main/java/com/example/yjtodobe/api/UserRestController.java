@@ -63,7 +63,7 @@ public class UserRestController {
         return memberService.signupCheck(param);
     }
     @GetMapping("/login/idFind")
-    public MemberDto.idFind idFind(@ModelAttribute MemberDto.idFindParam param) {
+    public List<MemberDto.idFind> idFind(@ModelAttribute MemberDto.idFindParam param) {
         return memberService.idFind(param);
     }
     @PutMapping("/login/pwFind")
