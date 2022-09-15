@@ -24,5 +24,9 @@ spring:
       org.hibernate.SQL: debug
       org.hibernate.type: trace
 
+    servlet:
+      multipart: 
+        max-file-size: 20MB  #최대 파일 사이즈를 20MB로 지정#
+
 server:
   port: 8090
