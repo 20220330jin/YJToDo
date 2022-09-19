@@ -27,7 +27,6 @@ public class ImageFileRestController {
                                   @RequestParam(value="file", required = false) MultipartFile[] files,
                                   @RequestParam(value="comment", required = false) String comment) {
 
-
         String originFileName = files[0].getOriginalFilename();
         long fileSize = files[0].getSize();
         String safeFile = System.currentTimeMillis() + originFileName;
@@ -45,5 +44,6 @@ public class ImageFileRestController {
 
         return imagefileRepository.save(file);
     }
-
+    @GetMapping("/read")
+    public List<ImageFile> findAllImages() { return imagefileRepository.findAll(); }
 }
