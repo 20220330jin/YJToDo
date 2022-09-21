@@ -9,8 +9,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.yjtodobe.domain.ImageFile;
 import com.example.yjtodobe.repository.ImageFileRepository;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import java.io.*;
+import java.net.URLEncoder;
 import java.util.List;
 
 @RestController
@@ -46,4 +50,51 @@ public class ImageFileRestController {
     }
     @GetMapping("/read")
     public List<ImageFile> findAllImages() { return imagefileRepository.findAll(); }
+
+    @GetMapping("/download")
+    public List<ImageFile> downloadImage(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            @RequestParam(value="imageFilename", required = true) String imageFilename) {
+
+        File file = new File(filepath+imageFilename);
+
+        FileInputStream fis = null;    // FileInputStream 는 InputStream 를 상속받았으며, 파일로 부터 바이트로 입력받아, 바이트 단위로 출력할 수 있는 클래스
+        BufferedInputStream bis = null;  
+        ServletOutputStream sos = null;
+
+        try {
+            fis = new FileInputStream(file);
+            bis = new BufferedInputStream(fis);
+            sos = response.getOutputStream();
+
+            String reFilename = "";
+            // IE로 실행한 경우인지 -> IE는 따로 인코딩 작업을 거쳐야 한다. request헤어에 MSIE 또는 Trident가 포함되어 있는지 확인
+            boolean isMSIE = request.getHeader("user-agent").indexOf("MSIE") != -1 || request.getHeader("user-agent").indexOf("Trident") != -1;
+
+            if(isMSIE) {
+                reFilename = URLEncoder.encode("다운로드 테스트.jpg", "utf-8");
+                reFilename = reFilename.replaceAll("\\+", "%20");
+            }
+            else {
+                reFilename = new String("다운로드 테스트.jpg".getBytes("utf-8"), "ISO-8859-1");
+            }
+
+            response.setContentType("application/octet-stream;charset=utf-8");
+            response.addHeader("Content-Disposition", "attachment;filename=\""+reFilename+"\"");
+            response.setContentLength((int)file.length());
+
+            int read = 0;
+            while((read = bis.read()) != -1) {
+                sos.write(read);
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }
