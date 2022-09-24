@@ -3,11 +3,14 @@ package com.example.yjtodobe.api;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.yjtodobe.domain.ImageFile;
+import com.example.yjtodobe.model.ImageFileDto;
 import com.example.yjtodobe.repository.ImageFileRepository;
+import com.example.yjtodobe.service.ImageFileService;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -17,13 +20,17 @@ import java.io.*;
 import java.net.URLEncoder;
 import java.util.List;
 
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("image")
 @CrossOrigin("http://localhost:3002")
 
 public class ImageFileRestController {
-    private final ImageFileRepository imagefileRepository;
+
+    final ImageFileService imageFileService;
+    final ImageFileRepository imageFileRepository;
+    
     String filepath = "C:/Users/dudwh/Desktop/YJToDoBE/src/main/resources/static/images/";  // 이미지 파일 저장할 위치path , 본인 로컬 프로젝트 내 resources 폴더에 이미지가 저장되기때문에 path 수정필요합니다
 
     @PostMapping("/upload")
@@ -32,8 +39,7 @@ public class ImageFileRestController {
                                   @RequestParam(value="comment", required = false) String comment) {
 
         String originFileName = files[0].getOriginalFilename();
-        long fileSize = files[0].getSize();
-        String safeFile = System.currentTimeMillis() + originFileName;
+        String safeFile =  + System.currentTimeMillis() + originFileName; // 중복된 이름이 있을경우를 대비하여 
 
         File f1 = new File(filepath + safeFile);
         try {
@@ -44,12 +50,24 @@ public class ImageFileRestController {
 
         final ImageFile file = ImageFile.builder()
                 .imageFilename(safeFile)
+                .delYn('N')
+                .useYn('Y')
                 .build();
 
-        return imagefileRepository.save(file);
+        return imageFileRepository.save(file);
     }
-    @GetMapping("/read")
-    public List<ImageFile> findAllImages() { return imagefileRepository.findAll(); }
+    // @GetMapping("/read")
+    // public List<ImageFile> findAllImages() { return imageFileRepository.findAll(Sort.by(Sort.Direction.DESC, "CreateDateTime")); }
+
+    @GetMapping("read")
+    public List<ImageFileDto.read> read() {
+        return imageFileService.read();
+    }
+
+    @GetMapping("/detail")
+    public ImageFileDto.detailRead detailRead(@ModelAttribute ImageFileDto.detailReadParam param) {
+        return imageFileService.detailRead(param);
+    }    
 
     @GetMapping("/download")
     public List<ImageFile> downloadImage(
@@ -68,16 +86,18 @@ public class ImageFileRestController {
             bis = new BufferedInputStream(fis);
             sos = response.getOutputStream();
 
+            // String originFileName = files[0].getOriginalFilename();
+
             String reFilename = "";
-            // IE로 실행한 경우인지 -> IE는 따로 인코딩 작업을 거쳐야 한다. request헤어에 MSIE 또는 Trident가 포함되어 있는지 확인
+            // IE로 실행한 경우인지 -> IE는 따로 인코딩 작업을 거쳐야 함
             boolean isMSIE = request.getHeader("user-agent").indexOf("MSIE") != -1 || request.getHeader("user-agent").indexOf("Trident") != -1;
 
             if(isMSIE) {
-                reFilename = URLEncoder.encode("다운로드 테스트.jpg", "utf-8");
+                reFilename = URLEncoder.encode(imageFilename, "utf-8");
                 reFilename = reFilename.replaceAll("\\+", "%20");
             }
             else {
-                reFilename = new String("다운로드 테스트.jpg".getBytes("utf-8"), "ISO-8859-1");
+                reFilename = new String(imageFilename.getBytes("utf-8"), "ISO-8859-1");
             }
 
             response.setContentType("application/octet-stream;charset=utf-8");
@@ -95,6 +115,12 @@ public class ImageFileRestController {
             e.printStackTrace();
         }
 
+
         return null;
+    }
+
+    @PutMapping("/delete")
+    public void delete(@RequestBody ImageFileDto.boardDeleteParam param){
+        imageFileService.boardDelete(param);
     }
 }

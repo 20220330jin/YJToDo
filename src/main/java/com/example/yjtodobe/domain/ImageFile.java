@@ -4,10 +4,10 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter 
 @Builder
@@ -21,6 +21,14 @@ public class ImageFile {
 
     @Column(nullable = false, unique = true, length = 1000)
     private String imageFilename;
+
+    @Column(nullable = false)
+    @ColumnDefault("'Y'")
+    protected char useYn = 'Y';
+
+    @Column(nullable = false)
+    @ColumnDefault("'N'")
+    protected char delYn = 'N';
 
     @Column
     @CreationTimestamp
